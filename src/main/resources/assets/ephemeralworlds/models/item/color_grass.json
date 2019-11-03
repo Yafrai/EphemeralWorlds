@@ -1,0 +1,7 @@
+{
+  "parent": "ephemeralworlds:block/color_grass",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/color/color_dirt_side",
+    "layer1": "ephemeralworlds:blocks/color/color_grass_side"
+  }
+}

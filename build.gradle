@@ -1,0 +1,119 @@
+buildscript {
+	repositories {
+		jcenter()
+		maven { url = 'http://maven.modmuss50.me' }
+		maven { url "https://plugins.gradle.org/m2/" }
+		gradlePluginPortal()
+	}
+	dependencies {
+		classpath 'net.fabricmc:fabric-loom:0.2.5-SNAPSHOT'
+		classpath "com.wynprice.cursemaven:CurseMaven:1.1.0"
+	}
+
+}
+
+plugins {
+	id 'fabric-loom' version '0.2.5-SNAPSHOT'
+	id 'maven-publish'
+	id 'maven'
+}
+
+apply plugin: "com.wynprice.cursemaven"
+
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+archivesBaseName = project.archives_base_name
+version = project.mod_version
+group = project.maven_group
+
+minecraft {
+}
+
+repositories {
+	maven { url 'https://maven.fabricmc.net' }
+	maven { url "https://minecraft.curseforge.com/api/maven"}
+	maven { url 'http://server.bbkr.space:8081/artifactory/libs-release' }
+	maven {
+		name = "NerdHubMC"
+		url = "https://maven.abusedmaster.xyz"
+	}
+}
+
+dependencies {
+	//to change the versions see the gradle.properties file
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}"
+	modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Fabric API. This is technically optional, but you probably want it anyway.
+	modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// Requirements
+	modCompile curse.resolve("crochet", "${project.crochet_version}")
+	modCompile "com.github.NerdHubMC:FOML:${foml_version}"
+	include "com.github.NerdHubMC:FOML:${foml_version}"
+
+	// Replace modImplementation with modApi if you expose components in your own API
+//	modImplementation "com.github.NerdHubMC:Cardinal-Components-API:${cardinal_components_version}"
+	// Includes Cardinal Components API as a Jar-in-Jar dependency (optional)
+	include "com.github.NerdHubMC:Cardinal-Components-API:${cardinal_components_base_version}"
+	// Adds an API dependency on the base cardinal components module
+	modImplementation "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-base:${cardinal_components_base_version}"
+	modImplementation "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-world:${cardinal_components_base_version}"
+	modImplementation "com.github.NerdHubMC.Cardinal-Components-API:cardinal-components-level:${cardinal_components_base_version}"
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	from(sourceSets.main.resources.srcDirs) {
+		include "fabric.mod.json"
+		expand "version": project.version
+	}
+
+	from(sourceSets.main.resources.srcDirs) {
+		exclude "fabric.mod.json"
+	}
+}
+
+// ensure that the encoding is set to UTF-8, no matter what the system default is
+// this fixes some edge cases with special characters not displaying correctly
+// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+}
+
+// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+// if it is present.
+// If you remove this task, sources will not be generated.
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier = "sources"
+	from sourceSets.main.allSource
+}
+
+jar {
+	from "LICENSE"
+}
+
+// configure the maven publication
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			// add all the jars that should be included when publishing to maven
+			artifact(remapJar) {
+				builtBy remapJar
+			}
+			artifact(sourcesJar) {
+				builtBy remapSourcesJar
+			}
+		}
+	}
+
+	// select the repositories you want to publish to
+	repositories {
+		// uncomment to publish to the local maven
+		// mavenLocal()
+	}
+}

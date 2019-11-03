@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/xerium_block",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/xerium_block"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "side": "ephemeralworlds:blocks/spirit_log",
+    "end": "ephemeralworlds:blocks/spirit_log_end"
+  }
+}

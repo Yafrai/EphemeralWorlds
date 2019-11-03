@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "net.ephemeralworlds.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MushroomMixin",
+    "PlayerEntityMixin",
+    "IllusionPortalForcerMixin"
+  ],
+  "client": [
+    "ExampleMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

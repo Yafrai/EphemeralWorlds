@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": {"model": "ephemeralworlds:block/obj/easel.obj", "y": 180},
+    "facing=south": {"model": "ephemeralworlds:block/obj/easel.obj"},
+    "facing=west": {"model": "ephemeralworlds:block/obj/easel.obj", "y": 90},
+    "facing=east": {"model": "ephemeralworlds:block/obj/easel.obj", "y": 270}
+  }
+}

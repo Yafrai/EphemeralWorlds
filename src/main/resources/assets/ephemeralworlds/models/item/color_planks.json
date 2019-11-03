@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/color_planks",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/color/color_planks"
+  }
+}

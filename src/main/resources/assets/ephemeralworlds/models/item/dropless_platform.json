@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/dropless_platform",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/dropless_platform"
+  }
+}

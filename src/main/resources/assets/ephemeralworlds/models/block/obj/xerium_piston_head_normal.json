@@ -1,0 +1,8 @@
+{
+    "parent": "block/piston_head",
+    "textures": {
+        "unsticky": "ephemeralworlds:blocks/piston_top_normal",
+        "side": "ephemeralworlds:blocks/piston_side",
+        "platform": "ephemeralworlds:blocks/piston_top_normal"
+    }
+}

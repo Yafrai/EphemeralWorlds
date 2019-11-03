@@ -1,0 +1,16 @@
+{
+  "type": "ephemeralworlds:easel_recipe",
+  "main": {
+    "item": "ephemeralworlds:bottle"
+  },
+  "ingredients": [
+
+    {
+      "item": "sugar"
+    }
+  ],
+  "result": {
+    "item": "ephemeralworlds:illusion_potion"
+  },
+  "color": "any"
+}

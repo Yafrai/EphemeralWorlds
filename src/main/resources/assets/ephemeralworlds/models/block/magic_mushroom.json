@@ -1,0 +1,9 @@
+{
+  "parent": "ephemeralworlds:block/shapes/parent_cross",
+  "textures": {
+    "stem": "ephemeralworlds:items/magic_mushroom",
+    "leaves1": "ephemeralworlds:items/magic_mushroom",
+    "leaves2": "ephemeralworlds:items/magic_mushroom",
+    "leaves3": "ephemeralworlds:items/magic_mushroom"
+  }
+}

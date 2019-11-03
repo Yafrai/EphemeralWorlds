@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xxx",
+    "CiC",
+    "CRC"
+  ],
+  "key": {
+    "x": {
+      "item": "ephemeralworlds:xerium_ingot"
+    },
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "ephemeralworlds:xerium_piston",
+    "count": 1
+  }
+}

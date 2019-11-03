@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/spirit_log",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/spirit_log"
+  }
+}

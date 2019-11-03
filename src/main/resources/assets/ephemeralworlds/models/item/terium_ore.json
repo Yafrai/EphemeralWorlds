@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/terium_ore",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/color/terium_ore"
+  }
+}

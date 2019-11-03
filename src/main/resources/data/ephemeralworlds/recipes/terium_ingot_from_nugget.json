@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ephemeralworlds:terium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:terium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:terium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:terium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:terium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:terium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:terium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:terium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:terium_nugget"
+    }
+  ],
+  "result": {
+    "item": "ephemeralworlds:terium_ingot",
+    "count": 1
+  }
+}

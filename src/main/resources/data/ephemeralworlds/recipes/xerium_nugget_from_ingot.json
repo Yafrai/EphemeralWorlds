@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ephemeralworlds:xerium_ingot"
+    }
+  ],
+  "result": {
+    "item": "ephemeralworlds:xerium_nugget",
+    "count": 9
+  }
+}
