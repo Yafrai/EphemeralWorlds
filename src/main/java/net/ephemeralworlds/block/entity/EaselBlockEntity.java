@@ -39,7 +39,7 @@ public class EaselBlockEntity extends ModInventoryBlockEntity {
 
             if (recipe.isPresent() && brush.getTagInkAmount(stack) >= 1 && recipe.get().colorFits(brush.getTagColor(stack))) {
                 inventory.clear();
-                inventory.set(0, recipe.get().getOutput().copy());
+                inventory.set(0, recipe.get().getActualOutput(brush.getTagColor(stack)).copy());
                 brush.wipeInk(stack);
                 return true;
             }

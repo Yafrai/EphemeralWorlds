@@ -6,12 +6,12 @@ import java.awt.*;
 
 public enum EnumColor implements StringIdentifiable {
 
-    BLUE(0, "blue", 1, 32765),
-    CYAN(1, "cyan", 3, 312314),
-    GREEN(2, "green", 2, 65215),
-    YELLOW(3, "yellow", 1, 8780035),
-    RED(4, "red", 1, 16592769),
-    MAGENTA(5, "magenta", 3, 16725454),
+    BLUE(0, "blue", 1, 0, 97, 255), // ex 32765
+    CYAN(1, "cyan", 3, 0, 241, 255), // ex 312314
+    GREEN(2, "green", 2, 77, 255, 50), // ex 65215
+    YELLOW(3, "yellow", 1, 255, 250, 36), // ex 8780035
+    RED(4, "red", 1, 255, 49, 43), // ex 16592769
+    MAGENTA(5, "magenta", 3, 244, 78,240), // ex 16725454
 
 //    BLUE(0, "blue", 1, 32765),
 //    BLUE_GREEN(1, "blue_green", 3, 312314),
@@ -67,12 +67,12 @@ public enum EnumColor implements StringIdentifiable {
         return values()[index];
     }
 
-    EnumColor(int index, String name, int order, int colorValue)
+    EnumColor(int index, String name, int order, int redValue, int greenValue, int blueValue)
     {
         this.index = index;
         this.name = name;
         this.order = order;
-        this.colorValue = colorValue;
+        this.colorValue = new Color(redValue, greenValue, blueValue).getRGB();
     }
 
     public static EnumColor byName(String name) {
@@ -82,8 +82,25 @@ public enum EnumColor implements StringIdentifiable {
         return null;
     }
 
+    public static int indexOf(EnumColor element) {
+        if (element == null)
+            return -1;
+
+        return element.getIndex();
+    }
+
     public boolean fits(EnumRecipeColor recipe) {
         return recipe.fits(this);
+    }
 
+    public int getColorForBrightness(EnumColorBrightness brightness) {
+        switch (brightness) {
+            case MINERAL:
+                return this.getMineralColor();
+            case ORGANIC:
+                return this.getVegetalColor();
+            default:
+                return this.getColorValue();
+        }
     }
 }

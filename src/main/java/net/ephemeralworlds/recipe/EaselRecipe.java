@@ -2,10 +2,14 @@ package net.ephemeralworlds.recipe;
 
 
 import net.ephemeralworlds.EphemeralWorlds;
+import net.ephemeralworlds.item.base.ColorItem;
 import net.ephemeralworlds.utils.enums.EnumColor;
 import net.ephemeralworlds.utils.enums.EnumRecipeColor;
+import net.ephemeralworlds.utils.helpers.ColorHelper;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
@@ -26,13 +30,15 @@ public class EaselRecipe implements Recipe<Inventory> {
     private final ItemStack output;
     private final Identifier id;
     private final EnumRecipeColor color;
+    private final boolean copyColor;
 
-    public EaselRecipe(Identifier id, ItemStack output, Ingredient main, DefaultedList<Ingredient> input, EnumRecipeColor color) {
+    public EaselRecipe(Identifier id, ItemStack output, Ingredient main, DefaultedList<Ingredient> input, EnumRecipeColor color, boolean copyColor) {
         this.id = id;
         this.main = main;
         this.input = input;
         this.output = output;
         this.color = color;
+        this.copyColor = copyColor;
     }
 
     @Override
@@ -88,6 +94,18 @@ public class EaselRecipe implements Recipe<Inventory> {
 
     @Override
     public ItemStack getOutput() {
+        return output.copy();
+    }
+
+    public ItemStack getActualOutput(EnumColor color) {
+        ItemStack output = getOutput();
+        Item item = output.getItem();
+
+        if (copyColor && item instanceof ColorItem) {
+            ColorItem colorItem = (ColorItem)item;
+            colorItem.setTagColor(output, color);
+        }
+
         return output;
     }
 

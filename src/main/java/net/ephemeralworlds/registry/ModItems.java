@@ -2,10 +2,7 @@ package net.ephemeralworlds.registry;
 
 import net.ephemeralworlds.EphemeralWorlds;
 import net.ephemeralworlds.block.base.ColorBlock;
-import net.ephemeralworlds.item.Brush;
-import net.ephemeralworlds.item.CreativePortal;
-import net.ephemeralworlds.item.IllusionPotion;
-import net.ephemeralworlds.item.MagicMushroom;
+import net.ephemeralworlds.item.*;
 import net.ephemeralworlds.item.base.ModItem;
 import net.ephemeralworlds.item.base.ColorItem;
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
@@ -28,6 +25,8 @@ public class ModItems {
     public static final Item BRUSH = new Brush("brush");
     public static final Item BOTTLE = new ModItem("bottle");
     public static final Item ILLUSION_POTION = new IllusionPotion("illusion_potion");
+//    public static final Item PAPER = new ModItem("paper");
+    public static final Item GLYPH = new Glyph("glyph");
 
     // Tiered
     public static final Item GEM1 = new ColorItem("gem1", false);

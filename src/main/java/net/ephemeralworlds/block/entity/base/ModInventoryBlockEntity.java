@@ -83,8 +83,4 @@ public class ModInventoryBlockEntity extends ModBlockEntity implements Inventory
         inventory.clear();
         markDirty();
     }
-
-//    public DefaultedList<ItemStack> getInventory() {
-//        return inventory;
-//    }
 }

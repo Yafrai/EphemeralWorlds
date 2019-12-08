@@ -24,25 +24,13 @@ import java.util.List;
 
 public class ModBlock extends Block {
 
-
     public ModBlock(String uname, Block base) {
-        this(uname, base, true);
+        this(uname, FabricBlockSettings.copy(base).build());
     }
 
     public ModBlock(String uname, Settings settings) {
-        this(uname, settings, true);
-    }
-
-    public ModBlock(String uname, Block base, boolean autoregister) {
-        this(uname, FabricBlockSettings.copy(base).build(), autoregister);
-
-    }
-
-    public ModBlock(String uname, Settings settings, boolean autoregister) {
         super(settings);
-
-        if (autoregister)
-            ModBlocks.addBlockForRegistration(uname, this);
+        ModBlocks.addBlockForRegistration(uname, this);
     }
 
     // Autoregister loot, still takes loot tables if found

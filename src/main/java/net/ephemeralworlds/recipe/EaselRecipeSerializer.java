@@ -1,10 +1,7 @@
 package net.ephemeralworlds.recipe;
 
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.*;
 import net.ephemeralworlds.utils.enums.EnumColor;
 import net.ephemeralworlds.utils.enums.EnumRecipeColor;
 import net.minecraft.item.Item;
@@ -20,18 +17,20 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class EaselRecipeSerializer implements RecipeSerializer<EaselRecipe> {
 
     private static ItemStack parseItemStack(JsonObject jsonObject) {
         String itemName = JsonHelper.getString(jsonObject, "item");
-        String itemTags = JsonHelper.getString(jsonObject, "tag", "");
+        JsonObject itemTags = JsonHelper.getObject(jsonObject, "tag", new JsonObject());
 
         Item item = Registry.ITEM.getOrEmpty(new Identifier(itemName)).orElseThrow(() -> new JsonSyntaxException("Unknown item '" + itemName + "'"));
         ItemStack stack = new ItemStack(item);
-        if (!itemTags.isEmpty()) {
+        if (itemTags.size() > 0) {
             CompoundTag tag = new CompoundTag();
-//            tag.put
+            for (Map.Entry<String, JsonElement> data: itemTags.entrySet())
+                tag.putString(data.getKey(), data.getValue().getAsString());
             stack.setTag(tag);
         }
         return stack;
@@ -63,9 +62,10 @@ public class EaselRecipeSerializer implements RecipeSerializer<EaselRecipe> {
         }
 
         String colorStr = JsonHelper.getString(jsonObject, "color");
+        boolean copyColor = JsonHelper.getBoolean(jsonObject, "recolor");
 
         EnumRecipeColor color = EnumRecipeColor.byName(colorStr);
-        return new EaselRecipe(identifier, output, main, ingredients, color);
+        return new EaselRecipe(identifier, output, main, ingredients, color, copyColor);
 
     }
 

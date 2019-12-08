@@ -2,6 +2,7 @@ package net.ephemeralworlds.client.renderer.base;
 
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import net.ephemeralworlds.utils.enums.EnumColor;
 import net.ephemeralworlds.utils.handlers.SpriteHandler;
 import net.ephemeralworlds.utils.helpers.ColorHelper;
 import net.minecraft.block.entity.BlockEntity;
@@ -26,8 +27,10 @@ import java.awt.*;
 
 public abstract class ModBlockEntityRenderer<T extends BlockEntity> extends BlockEntityRenderer<T> {
 
-
     public void renderStack(World world, ItemStack stack, double x, double y, double z) {
+        renderStack(world, stack, x, y, z, 1F);
+    }
+    public void renderStack(World world, ItemStack stack, double x, double y, double z, float scale) {
 
         if (!stack.isEmpty()) {
             GlStateManager.enableRescaleNormal();
@@ -37,6 +40,7 @@ public abstract class ModBlockEntityRenderer<T extends BlockEntity> extends Bloc
             GlStateManager.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
             GlStateManager.pushMatrix();
             GlStateManager.translated(x, y, z);
+            GlStateManager.scalef(scale, scale, scale);
 
             MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Type.GROUND);
 
@@ -104,7 +108,8 @@ public abstract class ModBlockEntityRenderer<T extends BlockEntity> extends Bloc
         GlStateManager.pushMatrix();
         MinecraftClient.getInstance().getTextureManager().bindTexture(sprite);
         GlStateManager.disableCull();
-//        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+
+        //        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         Tessellator tess = Tessellator.getInstance();
         BufferBuilder builder = tess.getBufferBuilder();
 
@@ -148,18 +153,21 @@ public abstract class ModBlockEntityRenderer<T extends BlockEntity> extends Bloc
 
 
 
-        builder.begin(GL11.GL_QUADS, VertexFormats.POSITION_UV_COLOR);
+        builder.begin(GL11.GL_QUADS, VertexFormats.POSITION_UV_COLOR_NORMAL);
 
         Color col = new Color(color);
 
+        float normalX = dir.getOffsetX();
+        float normalY = dir.getOffsetY();
+        float normalZ = dir.getOffsetZ();
 
-
-        builder.vertex(x1, y1, 0).texture(u0, v0).color(col.getRed() / 255F, col.getGreen() / 255F, col.getBlue() / 255F, 255*alpha).next();
-        builder.vertex(x2, y1, 0).texture(u1, v0).color(col.getRed() / 255F, col.getGreen() / 255F, col.getBlue() / 255F, 255*alpha).next();
-        builder.vertex(x2, y2, 0).texture(u1, v1).color(col.getRed() / 255F, col.getGreen() / 255F, col.getBlue() / 255F, 255*alpha).next();
-        builder.vertex(x1, y2, 0).texture(u0, v1).color(col.getRed() / 255F, col.getGreen() / 255F, col.getBlue() / 255F, 255*alpha).next();
+        builder.vertex(x1, y1, 0).texture(u0, v0).color(col.getRed() / 255F, col.getGreen() / 255F, col.getBlue() / 255F, 255*alpha).normal(normalX, normalY, normalZ).next();
+        builder.vertex(x2, y1, 0).texture(u1, v0).color(col.getRed() / 255F, col.getGreen() / 255F, col.getBlue() / 255F, 255*alpha).normal(normalX, normalY, normalZ).next();
+        builder.vertex(x2, y2, 0).texture(u1, v1).color(col.getRed() / 255F, col.getGreen() / 255F, col.getBlue() / 255F, 255*alpha).normal(normalX, normalY, normalZ).next();
+        builder.vertex(x1, y2, 0).texture(u0, v1).color(col.getRed() / 255F, col.getGreen() / 255F, col.getBlue() / 255F, 255*alpha).normal(normalX, normalY, normalZ).next();
 
         tess.draw();
+
 
         GlStateManager.enableCull();
         GlStateManager.popMatrix();
@@ -178,7 +186,31 @@ public abstract class ModBlockEntityRenderer<T extends BlockEntity> extends Bloc
 
         this.renderFace(renderX, renderY, renderZ, sprite, Direction.DOWN, color, alpha, 0, y1, x1, x2, z2, z1);
         this.renderFace(renderX, renderY, renderZ, sprite, Direction.UP, color, alpha, 0, 1-y2, 1-x1, 1-x2, z2, z1);
+    }
 
+    public void renderSprite(double renderX, double renderY, double renderZ, float x1, float y1, float z1, float x2, float y2, float z2, Identifier sprite, int color, float alpha, Direction side) {
+        switch (side) {
+            case NORTH:
+                this.renderFace(renderX, renderY, renderZ, sprite, Direction.EAST, color, alpha, 0, 1-x2, 1-z1, 1-z2, y1, y2);
+                break;
+            case SOUTH:
+                this.renderFace(renderX, renderY, renderZ, sprite, Direction.WEST, color, alpha, 0, x1, z2, z1, y1, y2);
+                break;
+
+            case EAST:
+                this.renderFace(renderX, renderY, renderZ, sprite, Direction.NORTH, color, alpha, 0, z1, 1-x1, 1-x2, y1, y2);
+                break;
+            case WEST:
+                this.renderFace(renderX, renderY, renderZ, sprite, Direction.SOUTH, color, alpha, 0, 1-z2, x2, x1, y1, y2);
+                break;
+
+            case DOWN:
+                this.renderFace(renderX, renderY, renderZ, sprite, Direction.DOWN, color, alpha, 0, y1, x1, x2, z2, z1);
+                break;
+            case UP:
+                this.renderFace(renderX, renderY, renderZ, sprite, Direction.UP, color, alpha, 0, 1-y2, 1-x1, 1-x2, z2, z1);
+                break;
+        }
     }
 
 }

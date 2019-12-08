@@ -1,7 +1,7 @@
 {
   "type": "ephemeralworlds:easel_recipe",
   "main": {
-    "item": "ephemeralworlds:bottle"
+    "item": "paper"
   },
   "ingredients": [
 
@@ -10,7 +10,10 @@
     }
   ],
   "result": {
-    "item": "ephemeralworlds:illusion_potion"
+    "item": "ephemeralworlds:glyph",
+    "tag": {
+      "glyph": "ink"
+    }
   },
   "color": "any",
   "recolor": true

@@ -1,5 +1,6 @@
 package net.ephemeralworlds.block.base;
 
+import net.ephemeralworlds.utils.enums.EnumColorBrightness;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemPlacementContext;
@@ -14,8 +15,8 @@ public class ColorPillarBlock extends ColorBlock {
 
     public static final EnumProperty<Direction.Axis> AXIS;
 
-    public ColorPillarBlock(String uname, Block base) {
-        super(uname, base);
+    public ColorPillarBlock(String uname, Block base, EnumColorBrightness brightness) {
+        super(uname, base, brightness);
         this.setDefaultState((BlockState)this.getDefaultState().with(AXIS, Direction.Axis.Y));
     }
 

@@ -21,20 +21,7 @@ public class InkJarRenderer extends ModBlockEntityRenderer<InkJarBlockEntity> {
         if (entity != null) {
             if (!entity.isEmpty()) {
                 Identifier sprite = SpriteHandler.INK;
-//                renderFace(renderX, renderY, renderZ, sprite, Direction.NORTH, EnumColor.BLUE.getColorValue(), (int)getWorld().getTime(), 0);
-//                renderFace(renderX, renderY, renderZ, sprite, Direction.DOWN, EnumColor.RED.getColorValue(), (int)getWorld().getTime(), 0);
-//                renderFace(renderX, renderY, renderZ, sprite, Direction.UP, EnumColor.GREEN.getColorValue(), (int)getWorld().getTime(), 0);
-
-//                float x1 = 0.5F * (float)Math.cos(0.3*getWorld().getTime());
-//                float x2 = 1F + 0.5F * (float)Math.cos(0.07*getWorld().getTime());
-
-//                float y1 = 0.5F * (float)Math.cos(0.04*getWorld().getTime());
-//                float y2 = 1F + 0.5F * (float)Math.cos(0.08*getWorld().getTime());
-
-//                float z1 = 0.5F * (float)Math.cos(0.1*getWorld().getTime());
-//                float z2 = 1F + 0.5F * (float)Math.cos(0.01*getWorld().getTime());
-
-                renderParallelepiped(renderX, renderY, renderZ, 0.25F, 1/16F, 0.25F, 0.75F, 0.6F * entity.getInkRatio() + 1/16F, 0.75F, sprite, entity.getColor().getColorValue(), 0.9F);
+                renderParallelepiped(renderX, renderY, renderZ, 0.25F, 1/16F, 0.25F, 0.75F, 7/16F * entity.getInkRatio() + 1/16F, 0.75F, sprite, entity.getColor().getColorValue(), 0.9F);
             }
         }
     }

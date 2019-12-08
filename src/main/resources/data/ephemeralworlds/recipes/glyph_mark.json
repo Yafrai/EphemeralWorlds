@@ -1,16 +1,19 @@
 {
   "type": "ephemeralworlds:easel_recipe",
   "main": {
-    "item": "ephemeralworlds:bottle"
+    "item": "paper"
   },
   "ingredients": [
 
     {
-      "item": "sugar"
+      "item": "dirt"
     }
   ],
   "result": {
-    "item": "ephemeralworlds:illusion_potion"
+    "item": "ephemeralworlds:glyph",
+    "tag": {
+      "glyph": "mark"
+    }
   },
   "color": "any",
   "recolor": true

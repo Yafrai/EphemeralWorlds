@@ -79,7 +79,8 @@ public class TeriumGrateHopperBlockEntity extends ModTickingBlockEntity implemen
             ((ModInkTankBlockEntity)downBlockEntity).receiveInk(1, color);
         }
 
-        world.setBlockState(pos.up(), Blocks.AIR.getDefaultState());
+        // todo put back
+//        world.setBlockState(pos.up(), Blocks.AIR.getDefaultState());
 
     }
 

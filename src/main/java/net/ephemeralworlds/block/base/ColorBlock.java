@@ -2,6 +2,7 @@ package net.ephemeralworlds.block.base;
 
 import com.google.common.collect.Lists;
 import net.ephemeralworlds.utils.enums.EnumColor;
+import net.ephemeralworlds.utils.enums.EnumColorBrightness;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.color.block.BlockColorProvider;
@@ -18,10 +19,11 @@ import java.util.List;
 public class ColorBlock extends ModBlock implements BlockColorProvider {
 
     static final EnumProperty<EnumColor> color = EnumProperty.of("color", EnumColor.class);
+    private final EnumColorBrightness brightness;
 
-    public ColorBlock(String uname, Block base) {
+    public ColorBlock(String uname, Block base, EnumColorBrightness brightness) {
         super(uname, base);
-
+        this.brightness = brightness;
         setDefaultState(getDefaultState().with(color, EnumColor.BLUE));
     }
 
@@ -33,12 +35,8 @@ public class ColorBlock extends ModBlock implements BlockColorProvider {
 
     public int getColor(BlockState blockState, ExtendedBlockView blockView, BlockPos blockPos, int tintIndex) {
         EnumColor color = getEnumColor(blockState);
-        if (tintIndex == 0)
-            return color.getMineralColor();
-        else if (tintIndex == 1)
-            return color.getVegetalColor();
+        return color.getColorForBrightness(brightness);
 
-        return color.getColorValue();
     }
 
     public static EnumColor getEnumColor(BlockState state) {

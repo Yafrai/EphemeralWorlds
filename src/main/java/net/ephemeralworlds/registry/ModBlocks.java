@@ -4,7 +4,7 @@ import net.ephemeralworlds.EphemeralWorlds;
 import net.ephemeralworlds.block.*;
 import net.ephemeralworlds.block.base.*;
 import net.ephemeralworlds.item.base.ColorBlockItem;
-import net.ephemeralworlds.utils.enums.EnumColor;
+import net.ephemeralworlds.utils.enums.EnumColorBrightness;
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -13,7 +13,6 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
-import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -33,20 +32,20 @@ public class ModBlocks {
     public static final Block TERIUM_GRATE_HOPPER = new TeriumGratedHopper("terium_grate_hopper", Blocks.HOPPER);
 
     // Tiered
-    public static final Block COLOR_STONE = new ColorBlock("color_stone", Blocks.STONE);
+    public static final Block COLOR_STONE = new ColorBlock("color_stone", Blocks.STONE, EnumColorBrightness.MINERAL);
     public static final Block RUNE_STONE = new ModBlock("rune_stone", Blocks.STONE);
 
-    public static final Block COLOR_LOG = new ColorPillarBlock("color_log", Blocks.OAK_LOG);
+    public static final Block COLOR_LOG = new ColorPillarBlock("color_log", Blocks.OAK_LOG, EnumColorBrightness.ORGANIC);
     public static final Block SPIRIT_LOG = new ModPillarBlock("spirit_log", Blocks.OAK_LOG);
     public static final Block RIFT_LOG = new ModPillarBlock("rift_log", Blocks.OAK_LOG);
 
 
     // Color
-    public static final Block COLOR_DIRT = new ColorBlock("color_dirt", Blocks.DIRT);
-    public static final Block COLOR_GRASS = new ColorBlockCutoutMipped("color_grass", Blocks.GRASS_BLOCK);
+    public static final Block COLOR_DIRT = new ColorBlock("color_dirt", Blocks.DIRT, EnumColorBrightness.MINERAL);
+    public static final Block COLOR_GRASS = new DualBrightnessColorBlock("color_grass", Blocks.GRASS_BLOCK, EnumColorBrightness.MINERAL, EnumColorBrightness.ORGANIC);
 
-    public static final Block COLOR_LEAVES = new ColorBlock("color_leaves", Blocks.OAK_LEAVES);
-    public static final Block COLOR_PLANKS = new ColorBlock("color_planks", Blocks.OAK_PLANKS);
+    public static final Block COLOR_LEAVES = new ColorBlock("color_leaves", Blocks.OAK_LEAVES, EnumColorBrightness.ORGANIC);
+    public static final Block COLOR_PLANKS = new ColorBlock("color_planks", Blocks.OAK_PLANKS, EnumColorBrightness.ORGANIC);
     public static final Block SPIRIT_LEAVES = new ModBlock("spirit_leaves", Blocks.OAK_LEAVES);
     public static final Block SPIRIT_PLANKS = new ModBlock("spirit_planks", Blocks.OAK_PLANKS);
     public static final Block RIFT_LEAVES = new ModBlock("rift_leaves", Blocks.OAK_LEAVES);
@@ -60,6 +59,9 @@ public class ModBlocks {
 
     // Advanced
     public static final Block EASEL = new Easel("easel", Blocks.OAK_PLANKS);
+
+    // Technical
+    public static final Block INK_DRAW = new InkDraw("ink_draw", Blocks.AIR);
 
 
     public static void registerBlocks() {

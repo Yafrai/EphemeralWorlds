@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer1": "items/paper",
+    "layer0": "ephemeralworlds:items/glyph"
+  }
+}
