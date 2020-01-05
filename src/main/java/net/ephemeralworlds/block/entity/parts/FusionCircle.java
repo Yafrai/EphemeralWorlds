@@ -20,7 +20,6 @@ import java.util.Set;
 public class FusionCircle extends AInventoryCircle {
 
     EnumColor paintColor = null;
-    long activatedSince = -1;
 
     public FusionCircle(InkDrawBlockEntity drawEntity) {
         super(drawEntity, EnumColor.BLUE);
@@ -44,7 +43,7 @@ public class FusionCircle extends AInventoryCircle {
 //            inventory.set(0, recipe.get().getActualOutput(brush.getTagColor(stack)).copy());
 
             paintColor = brush.getTagColor(brushStack);
-            activatedSince = getWorld().getTime();
+            activate(true);
             brush.wipeInk(brushStack);
             saveAndNotify();
             return true;
@@ -62,7 +61,7 @@ public class FusionCircle extends AInventoryCircle {
             inventory.clear();
             inventory.set(0, recipe.get().getActualOutput(paintColor).copy());
 
-            activatedSince = -1;
+            activate(false);
             paintColor = null;
             return true;
         }
@@ -75,7 +74,6 @@ public class FusionCircle extends AInventoryCircle {
         super.toTag(tag);
 
         tag.putInt("paint_color", EnumColor.indexOf(paintColor));
-        tag.putLong("activated", activatedSince);
 
         return tag;
     }
@@ -84,7 +82,6 @@ public class FusionCircle extends AInventoryCircle {
     public void fromTag(CompoundTag tag) {
         super.fromTag(tag);
         this.paintColor = EnumColor.byIndex(tag.getInt("paint_color"));
-        this.activatedSince = tag.getInt("activated");
     }
 
     @Override

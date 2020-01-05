@@ -3,22 +3,28 @@ package net.ephemeralworlds.registry;
 import net.ephemeralworlds.EphemeralWorlds;
 import net.ephemeralworlds.dimension.IllusionDimension;
 import net.ephemeralworlds.dimension.ModDimension;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.dimension.DimensionType;
 
 
 public class ModDimensions {
 
-    public static DimensionType illusion;
+    public static DimensionType ephemerium;
+    public static DimensionType trial;
 
     public static void registerDimensions() {
-        illusion = Registry.register(
+        ephemerium = Registry.register(
                 Registry.DIMENSION,
                 4,
-                EphemeralWorlds.MODID + ":" + "illusion",
-                new ModDimension(4, "_ephemeraldim", "EPHEMERALDIM", IllusionDimension::new, true)
+                EphemeralWorlds.MODID + ":" + "ephemerium",
+                new ModDimension(4, "_ephemerium", "EPHEMERIUM", IllusionDimension::new, true)
+        );
+
+        trial = Registry.register(
+                Registry.DIMENSION,
+                5,
+                EphemeralWorlds.MODID + ":" + "trial",
+                new ModDimension(5, "_trial", "trial", IllusionDimension::new, true)
         );
     }
 }

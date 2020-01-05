@@ -77,9 +77,33 @@ public class LevelInstanceManager implements IWorldInstanceManager, LevelSyncedC
         return null;
     }
 
+    public InstanceOptions getInstanceFromCoord(BlockPos pos) {
+        if (pos.getX() < 0)
+            return null;
+
+        if (pos.getZ() < 0 || pos.getZ() > InstanceOptions.INSTANCE_WIDTH)
+            return null;
+
+        int index = Math.floorDiv(pos.getX(), InstanceOptions.INSTANCE_WIDTH + InstanceOptions.INSTANCE_MARGIN);
+
+        try {
+            return instances.get(index);
+        }
+        catch (Exception e) {
+            return null;
+        }
+    }
+
+
+
     @Override
     public EnumColor getInstanceColorFromCoord(BlockPos pos) {
-        return null;
+        InstanceOptions instance = getInstanceFromCoord(pos);
+
+        if (instance == null)
+            return null;
+
+        return instance.color;
     }
 
 

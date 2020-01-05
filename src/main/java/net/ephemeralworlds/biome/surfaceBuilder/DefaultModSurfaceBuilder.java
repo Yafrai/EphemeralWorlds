@@ -3,6 +3,7 @@ package net.ephemeralworlds.biome.surfaceBuilder;
 import com.mojang.datafixers.Dynamic;
 import net.ephemeralworlds.block.base.ColorBlock;
 import net.ephemeralworlds.utils.enums.EnumColor;
+import net.ephemeralworlds.utils.helpers.DimensionHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.MinecraftServer;
@@ -28,11 +29,13 @@ public class DefaultModSurfaceBuilder extends SurfaceBuilder<TernarySurfaceConfi
 
     protected void generate(Random random, Chunk chunk, Biome biome, int x, int z, int ymax, double amplitude, BlockState blockState_default, BlockState blockState_default_top, BlockState top, BlockState under, BlockState underwater, int seaLevel) {
 
+        EnumColor color = DimensionHelper.getColorFromPosition(new BlockPos(x, 0, z));
+
         if (top.getBlock() instanceof ColorBlock)
-            top = ColorBlock.getStateWithColor(top, EnumColor.RED);
+            top = ColorBlock.getStateWithColor(top, color);
 
         if (under.getBlock() instanceof ColorBlock)
-            under = ColorBlock.getStateWithColor(top, EnumColor.YELLOW);
+            under = ColorBlock.getStateWithColor(top, color);
 
         BlockPos.Mutable blockPos$Mutable_1 = new BlockPos.Mutable();
         BlockState effectiveTop = top;

@@ -1,23 +1,13 @@
 package net.ephemeralworlds.mixin;
 
-import net.ephemeralworlds.registry.ModBlocks;
 import net.ephemeralworlds.registry.ModDimensions;
 import net.ephemeralworlds.registry.ModStatusEffects;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.container.PlayerContainer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Final;
@@ -26,7 +16,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
@@ -46,8 +35,8 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 		if (illusion) {
 			// Check enter illusion
 			if (!nausea || getStatusEffect(StatusEffects.NAUSEA).getDuration() <= 3*20) {
-				if (!dimension.equals(ModDimensions.illusion)) {
-					changeDimension(ModDimensions.illusion);
+				if (!dimension.equals(ModDimensions.ephemerium)) {
+					changeDimension(ModDimensions.ephemerium);
 				}
 			}
 
@@ -56,7 +45,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 		}
 		else {
 			// Check exit dimension
-			if (dimension.equals(ModDimensions.illusion)) {
+			if (dimension.equals(ModDimensions.ephemerium)) {
 				changeDimension(DimensionType.OVERWORLD);
 			}
 		}

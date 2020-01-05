@@ -37,7 +37,7 @@ public class InstanceOptions {
     }
 
     public void initIndexData(int index) {
-        setSpawn(new BlockPos(index * 1000, 50, 0));
+        setSpawn(new BlockPos(index * (INSTANCE_WIDTH + INSTANCE_MARGIN) + INSTANCE_WIDTH / 2, 60, INSTANCE_WIDTH / 2));
     }
 
     public void setBiome(ModBiome biome) {

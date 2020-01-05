@@ -1,5 +1,6 @@
 package net.ephemeralworlds;
 
+import net.ephemeralworlds.utils.handlers.ParticleHandler;
 import net.ephemeralworlds.utils.handlers.SpriteHandler;
 import net.fabricmc.api.ClientModInitializer;
 
@@ -18,6 +19,7 @@ public class EphemeralWorldsClient implements ClientModInitializer {
 		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.PARTICLE_ATLAS_TEX).register((atlasTexture, registry) ->
 		{
 			SpriteHandler.registerSprites(registry);
+			ParticleHandler.registerTextures(registry);
 		});
 
 	}

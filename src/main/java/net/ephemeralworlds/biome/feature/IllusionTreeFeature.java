@@ -1,7 +1,10 @@
 package net.ephemeralworlds.biome.feature;
 
 import com.mojang.datafixers.Dynamic;
+import net.ephemeralworlds.block.base.ColorBlock;
 import net.ephemeralworlds.registry.ModBlocks;
+import net.ephemeralworlds.utils.enums.EnumColor;
+import net.ephemeralworlds.utils.helpers.DimensionHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -26,8 +29,10 @@ public class IllusionTreeFeature extends ModTreeFeature {
     public List<BlockAndPos> getBlocks(BlockPos pos, int variant) {
         List<BlockAndPos> list = new ArrayList<>();
 
-        BlockState logState = ModBlocks.COLOR_LOG.getDefaultState();
-        BlockState leavesState = ModBlocks.COLOR_LEAVES.getDefaultState();
+        EnumColor color = DimensionHelper.getColorFromPosition(pos);
+
+        BlockState logState = ColorBlock.getStateWithColor(ModBlocks.COLOR_LOG.getDefaultState(), color);
+        BlockState leavesState = ColorBlock.getStateWithColor(ModBlocks.COLOR_LEAVES.getDefaultState(), color);
 
         int logHeight = variant==0?1:2;
         int leavesHeight = variant==0?2:3;

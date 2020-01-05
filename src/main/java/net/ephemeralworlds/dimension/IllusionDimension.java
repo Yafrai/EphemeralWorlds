@@ -6,7 +6,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.source.FixedBiomeSource;
 import net.minecraft.world.biome.source.FixedBiomeSourceConfig;
 import net.minecraft.world.dimension.Dimension;
@@ -61,7 +60,7 @@ public class IllusionDimension extends Dimension {
 
     @Override
     public DimensionType getType() {
-        return ModDimensions.illusion;
+        return ModDimensions.ephemerium;
     }
 
 }

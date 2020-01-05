@@ -50,6 +50,17 @@ public class InkDrawBlockEntity extends ModTickingBlockEntity  {
         }
     }
 
+    public Direction getFace(ISerializablePart reference) {
+
+        for (Direction face: Direction.values()) {
+            if (drawing.containsKey(face)) {
+                if (drawing.get(face) == reference)
+                    return face;
+            }
+        }
+        return null;
+    }
+
     public void setCircle(Direction face, ACircle circle) {
         setFaceContents(face, circle);
     }
