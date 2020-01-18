@@ -4,6 +4,7 @@ import nerdhub.cardinal.components.api.ComponentType;
 import nerdhub.cardinal.components.api.util.sync.LevelSyncedComponent;
 import nerdhub.cardinal.components.api.util.sync.WorldSyncedComponent;
 import net.ephemeralworlds.EphemeralWorlds;
+import net.ephemeralworlds.registry.ModDimensions;
 import net.ephemeralworlds.utils.enums.EnumColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
@@ -31,35 +32,25 @@ public class LevelInstanceManager implements IWorldInstanceManager, LevelSyncedC
     private List<InstanceOptions> instances = new ArrayList<>();
 
     public void createInstance(InstanceOptions options) {
-        boolean found = false;
+        // Remove expired instances
+        for (int i=instances.size()-1; i>=0; i--) {
+            if (i >= instances.size())
+                continue;
 
-        // Detach other instances form player
-        for (int i=0; i<instances.size(); i++) {
-            InstanceOptions option = instances.get(i);
-
-            if (option != null && option.owner!= null && option.owner.getName().asString().equals(options.owner.getName().asString())) {
-                option.owner = null;
-            }
-        }
-
-        // Replace expired instance with the new one
-        for (int i=0; i<instances.size(); i++) {
             InstanceOptions option = instances.get(i);
             if (option.hasExpired()) {
-                options.initIndexData(i);
-                instances.set(i, options);
-                found = true;
-                break;
+                instances.remove(i);
             }
+
+            if (EphemeralWorlds.ILLUSION_WORLD.getTime() > option.expiration)
+                option.isDecaying = true;
         }
 
-        // Or add
-        if (!found) {
-            options.initIndexData(instances.size());
-            instances.add(options);
-        }
+        // Add new instance
+        instances.add(options);
 
         markDirty();
+
 //        if (world instanceof ServerWorld)
 //            syncWithAll(((ServerWorld)world).getServer());
     }
@@ -69,29 +60,33 @@ public class LevelInstanceManager implements IWorldInstanceManager, LevelSyncedC
     }
 
     public InstanceOptions getInstance(PlayerEntity player) {
+        InstanceOptions inst = null;
         for (InstanceOptions instance: instances) {
             if (instance.owner != null && instance.owner.getName().asString().equals(player.getName().asString()))
-                return instance;
+                inst = instance;
         }
 
-        return null;
+        return inst;
     }
 
     public InstanceOptions getInstanceFromCoord(BlockPos pos) {
-        if (pos.getX() < 0)
-            return null;
+//        if (pos.getX() < 0)
+//            return null;
+//
+//        if (pos.getZ() < 0 || pos.getZ() > InstanceOptions.INSTANCE_WIDTH)
+//            return null;
+//
+//        int index = Math.floorDiv(pos.getX(), InstanceOptions.INSTANCE_WIDTH + InstanceOptions.INSTANCE_MARGIN);
+//
+//        try {
+//            return instances.get(index);
+//        }
+//        catch (Exception e) {
+//            return null;
+//        }
 
-        if (pos.getZ() < 0 || pos.getZ() > InstanceOptions.INSTANCE_WIDTH)
-            return null;
-
-        int index = Math.floorDiv(pos.getX(), InstanceOptions.INSTANCE_WIDTH + InstanceOptions.INSTANCE_MARGIN);
-
-        try {
-            return instances.get(index);
-        }
-        catch (Exception e) {
-            return null;
-        }
+        // todo
+        return null;
     }
 
 
@@ -106,21 +101,35 @@ public class LevelInstanceManager implements IWorldInstanceManager, LevelSyncedC
         return instance.color;
     }
 
+    public boolean testIslandPlace(int x, int y, int z, int radius) {
+        for (InstanceOptions instance: instances) {
+
+            double distSq = Math.pow(x - instance.getCenterX(), 2) + Math.pow(y - instance.getCenterY(), 2) + Math.pow(z - instance.getCenterZ(), 2);
+
+            if (distSq < Math.pow(radius + instance.radius, 2)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
     @Override public void fromTag(CompoundTag tag) {
         this.instances.clear();
         int elements = tag.getInt("count");
+//        World world = MinecraftServer.worlds.getWorld(ModDimensions.ephemerium);
 
         for (int i=0; i<elements; i++) {
             InstanceOptions option = new InstanceOptions(null, tag, Integer.toString(i));
-            option.initIndexData(instances.size());
+//            option.initIndexData(instances.size());
             instances.add(option);
         }
     }
 
     @Override public CompoundTag toTag(CompoundTag tag) {
         tag.putInt("count", instances.size());
-
+        // todo list
         for (int i=0; i<instances.size(); i++) {
             InstanceOptions option = instances.get(i);
             if (option != null) {

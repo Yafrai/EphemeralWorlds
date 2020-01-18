@@ -52,7 +52,7 @@ public class IllusionPortalForcerMixin {
             if (landingBlock.isAir() || standingBlock1.isOpaque() || standingBlock2.isOpaque()) {
                 Structure plate = this.world.getStructureManager().getStructure(new Identifier(EphemeralWorlds.MODID, "plate"));
                 if (plate != null) {
-                    plate.place(this.world, position.down(), new StructurePlacementData());
+                    plate.place(this.world, entity.getBlockPos().down(), new StructurePlacementData());
                 }
             }
 

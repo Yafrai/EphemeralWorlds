@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 
-public class IllusionTreeFeature extends ModTreeFeature {
+public class SpiritTreeFeature extends ModTreeFeature {
 
-    public IllusionTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer, boolean emitNeighborBlockUpdates, boolean alwaysTall) {
+    public SpiritTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer, boolean emitNeighborBlockUpdates, boolean alwaysTall) {
         super(configDeserializer, emitNeighborBlockUpdates, alwaysTall);
     }
 
@@ -32,8 +32,8 @@ public class IllusionTreeFeature extends ModTreeFeature {
 
         EnumColor color = DimensionHelper.getColorFromPosition(pos);
 
-        BlockState logState = ColorBlock.getStateWithColor(ModBlocks.COLOR_LOG.getDefaultState(), color);
-        BlockState leavesState = ColorBlock.getStateWithColor(ModBlocks.COLOR_LEAVES.getDefaultState(), color);
+        BlockState logState = ColorBlock.getStateWithColor(ModBlocks.SPIRIT_LOG.getDefaultState(), color);
+        BlockState leavesState = ColorBlock.getStateWithColor(ModBlocks.SPIRIT_LEAVES.getDefaultState(), color);
 
         int logHeight = variant==0?1:2;
         int leavesHeight = variant==0?2:3;

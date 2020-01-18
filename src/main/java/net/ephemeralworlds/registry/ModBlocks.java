@@ -42,6 +42,7 @@ public class ModBlocks {
 
     // Color
     public static final Block COLOR_DIRT = new ColorBlock("color_dirt", Blocks.DIRT, EnumColorBrightness.MINERAL);
+    public static final Block COLOR_SAND = new ColorBlock("color_sand", Blocks.SAND, EnumColorBrightness.MINERAL);
     public static final Block COLOR_GRASS = new DualBrightnessColorBlock("color_grass", Blocks.GRASS_BLOCK, EnumColorBrightness.MINERAL, EnumColorBrightness.ORGANIC);
 
     public static final Block COLOR_LEAVES = new ColorBlock("color_leaves", Blocks.OAK_LEAVES, EnumColorBrightness.ORGANIC);

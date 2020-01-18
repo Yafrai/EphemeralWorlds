@@ -6,9 +6,9 @@ import net.minecraft.world.dimension.DimensionType;
 
 import java.util.function.BiFunction;
 
-public class ModDimension extends DimensionType {
+public class ModDimensionType extends DimensionType {
 
-    public ModDimension(int id, String suffix, String saveDir, BiFunction<World, DimensionType, ? extends Dimension> factory, boolean hasSkyLight) {
+    public ModDimensionType(int id, String suffix, String saveDir, BiFunction<World, DimensionType, ? extends Dimension> factory, boolean hasSkyLight) {
         super(id, suffix, saveDir, factory, hasSkyLight);
     }
 }

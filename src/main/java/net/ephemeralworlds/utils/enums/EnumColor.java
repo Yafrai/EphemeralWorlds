@@ -10,8 +10,10 @@ public enum EnumColor implements StringIdentifiable {
     CYAN(1, "cyan", 3, 0, 241, 255), // ex 312314
     GREEN(2, "green", 2, 77, 255, 50), // ex 65215
     YELLOW(3, "yellow", 1, 255, 250, 36), // ex 8780035
-    RED(4, "red", 1, 255, 49, 43), // ex 16592769
-    MAGENTA(5, "magenta", 3, 244, 78,240), // ex 16725454
+    ORANGE(4, "orange", 1, 255, 157, 38), // ex 8780035
+    RED(5, "red", 1, 255, 49, 43), // ex 16592769
+    MAGENTA(6, "magenta", 3, 244, 78,240), // ex 16725454
+    PURPLE(7, "purple", 3, 162, 77,242), // ex 16725454
 
 //    BLUE(0, "blue", 1, 32765),
 //    BLUE_GREEN(1, "blue_green", 3, 312314),

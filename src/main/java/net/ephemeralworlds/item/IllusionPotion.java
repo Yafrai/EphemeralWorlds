@@ -11,6 +11,7 @@ import net.ephemeralworlds.utils.enums.EnumColor;
 import net.ephemeralworlds.utils.helpers.ColorHelper;
 import net.ephemeralworlds.utils.instanceHandler.IWorldInstanceManager;
 import net.ephemeralworlds.utils.instanceHandler.InstanceOptions;
+import net.ephemeralworlds.utils.instanceHandler.LevelInstanceManager;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,6 +19,7 @@ import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PotionItem;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
@@ -51,18 +53,20 @@ public class IllusionPotion extends ModPotionItem {
 //        ServerWorld world1 = MinecraftServer.getWorld(ModDimensions.illusion);
 
         if (illusionWorld.getDimension() instanceof IllusionDimension) {
-            EnumColor color = EnumColor.BLUE;
-            if (stack.getItem() instanceof ColorItem) {
-                color = ((ColorItem)stack.getItem()).getTagColor(stack);
-            }
+//            if (stack.getItem() instanceof ColorItem) {
+//                color = ((ColorItem)stack.getItem()).getTagColor(stack);
+//            }
+
+            CompoundTag potionTags = stack.getTag();
 //
 //            IWorldInstanceManager wim = EphemeralWorlds.WORLD_DATA.get(illusionWorld);
 //            InstanceOptions options = new InstanceOptions(player, color);
 //            wim.createInstance(options);
 
             IWorldInstanceManager wim = EphemeralWorlds.LEVEL_DATA.get(world.getLevelProperties());
-            InstanceOptions options = new InstanceOptions(player, color);
+            InstanceOptions options = new InstanceOptions(player, potionTags, (LevelInstanceManager) wim);
             wim.createInstance(options);
+
         }
 
     }

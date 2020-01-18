@@ -13,14 +13,18 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.chunk.*;
 
 public class IllusionDimension extends Dimension {
+
+    World world;
+
     public IllusionDimension(World world, DimensionType type) {
         super(world, type);
+        this.world = world;
     }
 
     @Override
     public ChunkGenerator<?> createChunkGenerator() {
-        FloatingIslandsChunkGeneratorConfig config = ChunkGeneratorType.FLOATING_ISLANDS.createSettings();
-        return ChunkGeneratorType.FLOATING_ISLANDS.create(world, new FixedBiomeSource(new FixedBiomeSourceConfig().setBiome(ModBiomes.forest)), config);
+        DebugChunkGeneratorConfig config = ChunkGeneratorType.DEBUG.createSettings();
+        return ChunkGeneratorType.DEBUG.create(world, new FixedBiomeSource(new FixedBiomeSourceConfig().setBiome(ModBiomes.forest)), config);
     }
 
     @Override

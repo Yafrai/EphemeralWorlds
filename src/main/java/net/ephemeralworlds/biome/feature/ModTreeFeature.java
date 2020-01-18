@@ -3,6 +3,7 @@ package net.ephemeralworlds.biome.feature;
 import com.mojang.datafixers.Dynamic;
 import net.ephemeralworlds.block.base.ModBlock;
 import net.ephemeralworlds.registry.ModBlocks;
+import net.ephemeralworlds.utils.tools.BlockAndPos;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -57,7 +58,7 @@ public abstract class ModTreeFeature extends AbstractTreeFeature<DefaultFeatureC
     public abstract List<BlockAndPos> getBlocks(BlockPos pos, int variant);
 
     @Override
-    protected boolean generate(Set<BlockPos> set, ModifiableTestableWorld modifiableTestableWorld, Random random, BlockPos position, MutableIntBoundingBox mutableIntBoundingBox) {
+    public boolean generate(Set<BlockPos> set, ModifiableTestableWorld modifiableTestableWorld, Random random, BlockPos position, MutableIntBoundingBox mutableIntBoundingBox) {
         int variant = getVariant(random);
         List<BlockAndPos> blockList = getBlocks(position, variant);
 
@@ -86,6 +87,38 @@ public abstract class ModTreeFeature extends AbstractTreeFeature<DefaultFeatureC
 
         return true;
     }
+
+//    protected boolean generateInList(Set<BlockPos> set, ModifiableTestableWorld modifiableTestableWorld, Random random, BlockPos position, MutableIntBoundingBox mutableIntBoundingBox) {
+//        int variant = getVariant(random);
+//        List<BlockAndPos> blockList = getBlocks(position, variant);
+//
+//        // Validate blocks and soil
+//        if (!isDirtOrGrass(modifiableTestableWorld, position.down()))
+//            return false;
+//
+//        for (BlockAndPos bp : blockList) {
+//            BlockPos actual_pos = bp.pos;
+//            if (actual_pos.getY() >= 0 && actual_pos.getY() < 256) {
+//                if (bp.required && !canReplaceBlock(modifiableTestableWorld, actual_pos)) {
+//                    return false;
+//                }
+//            } else {
+//                return false;
+//            }
+//        }
+//
+//        // Replace blocks
+//        // todo mirror / rotate
+////        setToDirt(modifiableTestableWorld, position.down());
+////
+////        for (BlockAndPos bp : blockList) {
+////            this.setBlockState(set, modifiableTestableWorld, bp.pos, bp.state, mutableIntBoundingBox);
+////        }
+//
+//
+//
+//        return true;
+//    }
 
 //        boolean validPlace = true;
 //        if (blockPos.getY() >= 1 && blockPos.getY() + treeHeight + 1 <= 256) { // Height validation
@@ -183,15 +216,5 @@ public abstract class ModTreeFeature extends AbstractTreeFeature<DefaultFeatureC
 
 
 
-    protected class BlockAndPos {
-        public BlockState state;
-        public BlockPos pos;
-        boolean required;
 
-        public BlockAndPos(BlockState state, BlockPos pos, boolean required) {
-            this.state = state;
-            this.pos = pos;
-            this.required = required;
-        }
-    }
 }
