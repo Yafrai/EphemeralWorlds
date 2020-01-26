@@ -27,13 +27,12 @@ public class SpiritTreeFeature extends ModTreeFeature {
     }
 
     @Override
-    public List<BlockAndPos> getBlocks(BlockPos pos, int variant) {
+    public List<BlockAndPos> getBlocks(BlockPos pos, int variant, EnumColor color) {
         List<BlockAndPos> list = new ArrayList<>();
 
-        EnumColor color = DimensionHelper.getColorFromPosition(pos);
-
-        BlockState logState = ColorBlock.getStateWithColor(ModBlocks.SPIRIT_LOG.getDefaultState(), color);
-        BlockState leavesState = ColorBlock.getStateWithColor(ModBlocks.SPIRIT_LEAVES.getDefaultState(), color);
+        BlockState logState = ModBlocks.SPIRIT_LOG.getDefaultState();
+        BlockState leavesState = ModBlocks.SPIRIT_LEAVES.getDefaultState();
+        DIRT = ColorBlock.getStateWithColor(DIRT, color);
 
         int logHeight = variant==0?1:2;
         int leavesHeight = variant==0?2:3;

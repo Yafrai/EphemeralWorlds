@@ -2,6 +2,7 @@ package net.ephemeralworlds.item;
 
 import net.ephemeralworlds.EphemeralWorlds;
 import net.ephemeralworlds.dimension.IllusionDimension;
+import net.ephemeralworlds.dimension.generation.IslandGenerator;
 import net.ephemeralworlds.item.base.ColorItem;
 import net.ephemeralworlds.item.base.ModItem;
 import net.ephemeralworlds.item.base.ModPotionItem;
@@ -66,6 +67,7 @@ public class IllusionPotion extends ModPotionItem {
             IWorldInstanceManager wim = EphemeralWorlds.LEVEL_DATA.get(world.getLevelProperties());
             InstanceOptions options = new InstanceOptions(player, potionTags, (LevelInstanceManager) wim);
             wim.createInstance(options);
+            IslandGenerator.createIsland(options, player.getServer());
 
         }
 

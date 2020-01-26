@@ -53,10 +53,12 @@ public class ModBlocks {
     public static final Block RIFT_PLANKS = new ModBlock("rift_planks", Blocks.OAK_PLANKS);
 
     // Dimension
-    public static final Block GEM_ORE = new GemOre("gem_ore");
-    public static final Block TERIUM_ORE = new ModBlock("terium_ore", Blocks.IRON_ORE);
-    public static final Block XERIUM_ORE = new ModBlock("xerium_ore", Blocks.IRON_ORE);
-    public static final Block DROPLESS_PLATFORM = new CutoutMippedBlock("dropless_platform", Blocks.GLASS);
+    public static final Block GEM_ORE1 = new GemOre("gem_ore_1");
+    public static final Block GEM_ORE2 = new GemOre("gem_ore_2");
+    public static final Block GEM_ORE3 = new GemOre("gem_ore_3");
+    public static final Block TERIUM_ORE = new MetalOre("terium_ore");
+    public static final Block XERIUM_ORE = new MetalOre("xerium_ore");
+    public static final Block DROPLESS_PLATFORM = new LayeredBlock("dropless_platform", Blocks.GLASS);
 
     // Advanced
     public static final Block EASEL = new Easel("easel", Blocks.OAK_PLANKS);

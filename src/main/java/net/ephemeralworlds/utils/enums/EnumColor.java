@@ -52,8 +52,8 @@ public enum EnumColor implements StringIdentifiable {
 
     public int getMineralColor() {
         float[] hsv = getHSVColor();
-        hsv[1] *= 0.45F;
-        hsv[2] *= 1.1F;
+        hsv[1] *= 0.15F;
+        hsv[2] *= 1F;
         return HSVToColor(hsv);
     }
 

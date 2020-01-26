@@ -1,7 +1,6 @@
 package net.ephemeralworlds.utils.instanceHandler;
 
 import net.ephemeralworlds.biome.base.ModBiome;
-import net.ephemeralworlds.dimension.generation.IslandGenerator;
 import net.ephemeralworlds.utils.enums.EnumColor;
 import net.ephemeralworlds.utils.helpers.PlayerHelper;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,6 +27,7 @@ public class InstanceOptions {
     int radius;
     long expiration;
     Random random;
+    int islandLevel;
 
     ModBiome forcedBiome = null;
 
@@ -43,12 +43,12 @@ public class InstanceOptions {
         this.radius = getRadiusFromPotion(potionTag);
         this.center = findIslandPlace(manager);
         this.spawn = findSpawn(manager);
+        this.islandLevel = getLevelFromPotion(potionTag);
 
         this.expiration = 3 * 20 * 60;
-        IslandGenerator.createIsland(this);
     }
 
-    public EnumColor getColor(CompoundTag potionTag) {
+    protected EnumColor getColor(CompoundTag potionTag) {
         if (potionTag.containsKey("color")) {
             return EnumColor.byIndex(potionTag.getInt("color"));
         }
@@ -56,16 +56,19 @@ public class InstanceOptions {
         return EnumColor.byIndex(0);
     }
 
-    public int getRadiusFromPotion(CompoundTag potionTag) {
+    protected int getRadiusFromPotion(CompoundTag potionTag) {
 
         float multiplier = 0;
 
         // todo range multiplier
-
         return Math.round(BASE_RADIUS * (1 + multiplier));
     }
 
-    public BlockPos findIslandPlace(LevelInstanceManager manager) {
+    protected int getLevelFromPotion(CompoundTag potionTag) {
+        return 1;
+    }
+
+    protected BlockPos findIslandPlace(LevelInstanceManager manager) {
         int y = Math.round((BASE_MAX_Y - BASE_MIN_Y) * random.nextFloat() + BASE_MIN_Y);
 
         if (manager.testIslandPlace(0, y, 0, radius)) {
@@ -92,7 +95,7 @@ public class InstanceOptions {
 
     }
 
-    public BlockPos findSpawn(LevelInstanceManager manager) {
+    protected BlockPos findSpawn(LevelInstanceManager manager) {
         return this.center.up(); // todo
     }
 
@@ -105,6 +108,7 @@ public class InstanceOptions {
 
         this.center = new BlockPos(tag.getInt("center_x_"+suffix), tag.getInt("center_y_"+suffix), tag.getInt("center_z_"+suffix));
         this.radius = tag.getInt("radius_"+suffix);
+        this.islandLevel = tag.getInt("island_level_"+suffix);
         this.expiration = tag.getLong("expiration_"+suffix);
     }
 
@@ -142,6 +146,7 @@ public class InstanceOptions {
     }
     public EnumColor getColor() {return color;}
     public int getRadius() {return radius;}
+    public int getIslandLevel() {return islandLevel;}
 
     boolean isDecaying() {
         return isDecaying;
@@ -166,6 +171,7 @@ public class InstanceOptions {
         tag.putInt("center_y_"+suffix, center.getY());
         tag.putInt("center_z_"+suffix, center.getZ());
         tag.putInt("radius_"+suffix, radius);
+        tag.putInt("island_level_"+suffix, islandLevel);
 
         return tag;
     }

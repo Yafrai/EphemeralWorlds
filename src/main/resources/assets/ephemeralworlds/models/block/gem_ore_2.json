@@ -1,7 +1,7 @@
 {
   "parent": "ephemeralworlds:block/shapes/color_layer",
   "textures": {
-    "layer": "ephemeralworlds:blocks/color/xerium_ore",
+    "layer": "ephemeralworlds:blocks/color/gem_ore_2",
     "background": "ephemeralworlds:blocks/color/color_stone"
   }
 }

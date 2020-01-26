@@ -33,7 +33,7 @@ public class ColorItem extends ModItem implements ItemColorProvider {
             return color!=null?color.getColorValue():new Color(255, 255, 255).getRGB();
         }
         else
-        return new Color(255, 255, 255).getRGB();
+            return new Color(255, 255, 255).getRGB();
     }
 
     public EnumColor getTagColor(ItemStack stack) {

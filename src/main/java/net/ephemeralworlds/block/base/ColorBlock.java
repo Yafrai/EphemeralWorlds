@@ -10,10 +10,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.state.StateFactory;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ExtendedBlockView;
 
 
+import java.awt.*;
 import java.util.List;
 
 public class ColorBlock extends ModBlock implements BlockColorProvider {
@@ -34,14 +36,18 @@ public class ColorBlock extends ModBlock implements BlockColorProvider {
     }
 
     public int getColor(BlockState blockState, ExtendedBlockView blockView, BlockPos blockPos, int tintIndex) {
-        EnumColor color = getEnumColor(blockState);
-        return color.getColorForBrightness(brightness);
-
+        if (tintIndex == 0) {
+            EnumColor color = getEnumColor(blockState);
+            return color.getColorForBrightness(brightness);
+        }
+        else
+            return new Color(255, 255, 255).getRGB();
     }
 
     public static EnumColor getEnumColor(BlockState state) {
         return state.get(color);
     }
+
     public static BlockState getStateWithColor(BlockState state, EnumColor recolor) {
         return state.with(color, recolor);
     }

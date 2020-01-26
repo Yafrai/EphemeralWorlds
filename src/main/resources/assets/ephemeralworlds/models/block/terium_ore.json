@@ -1,6 +1,7 @@
 {
-  "parent": "block/cube_all",
+  "parent": "ephemeralworlds:block/shapes/color_layer",
   "textures": {
-    "all": "ephemeralworlds:blocks/color/terium_ore"
+    "layer": "ephemeralworlds:blocks/color/terium_ore",
+    "background": "ephemeralworlds:blocks/color/color_stone"
   }
 }

@@ -23,7 +23,7 @@ public class EphemeralWorlds implements ModInitializer {
 
 	public static final String MODID = "ephemeralworlds";
 
-	public static final ItemGroup GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, "group"), () -> new ItemStack(ModBlocks.GEM_ORE));
+	public static final ItemGroup GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, "group"), () -> new ItemStack(ModBlocks.GEM_ORE1));
 
 //	public static final ComponentType<IWorldInstanceManager> WORLD_DATA = ComponentRegistry.INSTANCE.registerIfAbsent(new Identifier(EphemeralWorlds.MODID, "world_data"), IWorldInstanceManager.class);
 	public static final ComponentType<IWorldInstanceManager> LEVEL_DATA = ComponentRegistry.INSTANCE.registerIfAbsent(new Identifier(EphemeralWorlds.MODID, "world_data"), IWorldInstanceManager.class);

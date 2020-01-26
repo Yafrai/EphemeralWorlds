@@ -70,22 +70,16 @@ public class LevelInstanceManager implements IWorldInstanceManager, LevelSyncedC
     }
 
     public InstanceOptions getInstanceFromCoord(BlockPos pos) {
-//        if (pos.getX() < 0)
-//            return null;
-//
-//        if (pos.getZ() < 0 || pos.getZ() > InstanceOptions.INSTANCE_WIDTH)
-//            return null;
-//
-//        int index = Math.floorDiv(pos.getX(), InstanceOptions.INSTANCE_WIDTH + InstanceOptions.INSTANCE_MARGIN);
-//
-//        try {
-//            return instances.get(index);
-//        }
-//        catch (Exception e) {
-//            return null;
-//        }
 
-        // todo
+        int x, z;
+
+        for (InstanceOptions instance: instances) {
+            x = instance.getCenterX() - pos.getX();
+            z = instance.getCenterZ() - pos.getZ();
+            if (x*x + z*z <= instance.radius * instance.radius)
+                return instance;
+        }
+
         return null;
     }
 

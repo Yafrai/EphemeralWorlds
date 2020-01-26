@@ -20,7 +20,7 @@ public abstract class ModBiome extends Biome {
                     new ModOreFeature(OreFeatureConfig::deserialize),
                     new OreFeatureConfig(
                             OreFeatureConfig.Target.NATURAL_STONE,
-                            ModBlocks.GEM_ORE.getDefaultState(),
+                            ModBlocks.GEM_ORE1.getDefaultState(),
                             6 //Ore vein size
                     ),
                     Decorator.COUNT_RANGE,

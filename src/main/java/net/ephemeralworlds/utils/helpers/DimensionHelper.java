@@ -22,9 +22,9 @@ public class DimensionHelper {
         return wim.getInstance(player);
     }
 
-    public static EnumColor getColorFromPosition(BlockPos pos) {
+    public static EnumColor getColorFromPosition(World world, BlockPos pos) {
 
-        IWorldInstanceManager wim = EphemeralWorlds.LEVEL_DATA.get(EphemeralWorlds.ILLUSION_WORLD.getLevelProperties());
+        IWorldInstanceManager wim = EphemeralWorlds.LEVEL_DATA.get(world.getLevelProperties());
         EnumColor color = wim.getInstanceColorFromCoord(pos);
         if (color == null)
             color = EnumColor.BLUE;

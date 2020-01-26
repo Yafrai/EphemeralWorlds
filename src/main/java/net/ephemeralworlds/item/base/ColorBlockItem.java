@@ -1,5 +1,6 @@
 package net.ephemeralworlds.item.base;
 
+import net.ephemeralworlds.block.base.ColorBlock;
 import net.ephemeralworlds.utils.enums.EnumColor;
 import net.minecraft.advancement.criterion.Criterions;
 import net.minecraft.block.Block;
@@ -29,8 +30,16 @@ public class ColorBlockItem extends BlockItem {
     }
 
     public int getColor(ItemStack stack, int tintIndex) {
+        try {
+            ColorBlockItem itemBlock = (ColorBlockItem) stack.getItem();
+            ColorBlock colorBlock = (ColorBlock) itemBlock.getBlock();
 
-        return getTagColor(stack).getColorValue();
+            BlockState state = ColorBlock.getStateWithColor(colorBlock.getDefaultState(), getTagColor(stack));
+            return colorBlock.getColor(state, null, null, tintIndex);
+        }
+        catch (Exception e) {
+            return getTagColor(stack).getColorValue();
+        }
     }
 
     public CompoundTag getItemTag(ItemStack stack) {

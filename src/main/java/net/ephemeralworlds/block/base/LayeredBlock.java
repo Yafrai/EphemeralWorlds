@@ -8,9 +8,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 
-public class CutoutMippedBlock extends ModBlock {
+public class LayeredBlock extends ModBlock {
 
-    public CutoutMippedBlock(String uname, Block block) {
+    public LayeredBlock(String uname, Block block) {
         super(uname, block);
     }
 

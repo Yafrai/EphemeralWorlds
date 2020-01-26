@@ -23,21 +23,19 @@ public class IllusionTreeFeature extends ModTreeFeature {
 
     @Override
     public int getVariant(Random random) {
-        return random.nextInt(2); // 0 or 1
+        return random.nextInt(4); // 0, 1, 2 or 3
     }
 
     @Override
-    public List<BlockAndPos> getBlocks(BlockPos pos, int variant) {
+    public List<BlockAndPos> getBlocks(BlockPos pos, int variant, EnumColor color) {
         List<BlockAndPos> list = new ArrayList<>();
-
-        EnumColor color = DimensionHelper.getColorFromPosition(pos);
 
         BlockState logState = ColorBlock.getStateWithColor(ModBlocks.COLOR_LOG.getDefaultState(), color);
         BlockState leavesState = ColorBlock.getStateWithColor(ModBlocks.COLOR_LEAVES.getDefaultState(), color);
+        DIRT = ColorBlock.getStateWithColor(DIRT, color);
 
-        int logHeight = variant==0?1:2;
-        int leavesHeight = variant==0?2:3;
-
+        int logHeight = (variant==0 || variant==2)?1:2;
+        boolean youngTree = variant <= 1;
         BlockPos current = pos;
 
         while (logHeight > 0) {
@@ -46,26 +44,31 @@ public class IllusionTreeFeature extends ModTreeFeature {
             current = current.up();
         }
 
-        addBlock(logState, true, current, list);
-        addDiamond(leavesState, false, current, 1, list);
-        current = current.up();
+        if (youngTree) {
+            addBlock(logState, true, current, list);
+            addCross(leavesState, false, current, 1, false, list);
+            current = current.up();
 
-        while (leavesHeight > 0) {
-            leavesHeight--;
+            addBlock(logState, true, current, list);
+            addDiamond(leavesState, false, current, 1, list);
+            current = current.up();
+
+            addCross(leavesState, false, current, 1, true, list);
+        }
+        else {
+            addBlock(logState, true, current, list);
+            addHash(leavesState, false, current, false, list);
+            current = current.up();
+
             addBlock(logState, true, current, list);
             addDiamond(leavesState, false, current, 2, list);
             current = current.up();
+
+            addHash(leavesState, false, current, true, list);
+            current = current.up();
+
+            addCross(leavesState, false, current, 1, true, list);
         }
-
-        addBlock(logState, true, current, list);
-        addSquare(leavesState, false, current, 1, list);
-        current = current.up();
-
-        addBlock(logState, true, current, list);
-        addDiamond(leavesState, false, current, 1, list);
-        current = current.up();
-
-        addBlock(leavesState, false, current, list);
 
         return list;
     }

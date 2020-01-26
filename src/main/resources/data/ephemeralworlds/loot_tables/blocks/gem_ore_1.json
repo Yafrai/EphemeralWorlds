@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ephemeralworlds:gem_ore"
+          "name": "ephemeralworlds:gem_ore_1"
         }
       ],
       "conditions": [
