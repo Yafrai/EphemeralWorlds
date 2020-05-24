@@ -3,6 +3,10 @@ package net.ephemeralworlds.registry;
 import net.ephemeralworlds.EphemeralWorlds;
 import net.ephemeralworlds.block.*;
 import net.ephemeralworlds.block.base.*;
+import net.ephemeralworlds.block.totem.EffigyProjection;
+import net.ephemeralworlds.block.totem.PartBasic;
+import net.ephemeralworlds.block.totem.PartDivine;
+import net.ephemeralworlds.block.totem.PlinthBasic;
 import net.ephemeralworlds.item.base.ColorBlockItem;
 import net.ephemeralworlds.utils.enums.EnumColorBrightness;
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
@@ -59,12 +63,24 @@ public class ModBlocks {
     public static final Block TERIUM_ORE = new MetalOre("terium_ore");
     public static final Block XERIUM_ORE = new MetalOre("xerium_ore");
     public static final Block DROPLESS_PLATFORM = new LayeredBlock("dropless_platform", Blocks.GLASS);
+    public static final Block DECAYED_SOIL = new DecayedSoil("decayed_soil");
 
     // Advanced
-    public static final Block EASEL = new Easel("easel", Blocks.OAK_PLANKS);
+//    public static final Block EASEL = new Easel("easel", Blocks.OAK_PLANKS);
+    public static final Block TINKERING_TABLE = new TinkeringTable("tinkering_table", Blocks.FURNACE);
+
 
     // Technical
     public static final Block INK_DRAW = new InkDraw("ink_draw", Blocks.AIR);
+
+    // Totem
+    public static final Block TOTEM_PART_BASIC = new PartBasic("totem_part_basic");
+    public static final Block TOTEM_PART_DIVINE = new PartDivine("totem_part_divine");
+
+    public static final Block TOTEM_PLINTH_BASIC = new PlinthBasic("totem_plinth_basic");
+    public static final Block TOTEM_PLINTH_STURDY = new PlinthBasic("totem_plinth_sturdy");
+
+    public static final Block TOTEM_EFFIGY_PROJECTION = new EffigyProjection("totem_effigy_projection");
 
 
     public static void registerBlocks() {

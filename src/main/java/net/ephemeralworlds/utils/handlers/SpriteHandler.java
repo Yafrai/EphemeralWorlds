@@ -1,9 +1,7 @@
 package net.ephemeralworlds.utils.handlers;
 
 import net.ephemeralworlds.EphemeralWorlds;
-import net.ephemeralworlds.block.entity.parts.ACircle;
-import net.ephemeralworlds.block.entity.parts.FusionCircle;
-import net.ephemeralworlds.block.entity.parts.GenericCircle;
+import net.ephemeralworlds.block.entity.parts.*;
 import net.ephemeralworlds.utils.enums.EnumGlyph;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.impl.client.particle.FabricParticleManager;
@@ -18,6 +16,8 @@ public class SpriteHandler {
     public static final Identifier DRIP_INK_PARTICLE = new Identifier(EphemeralWorlds.MODID, "textures/particle/drip_ink.png");
     public static final Identifier CIRCLE = new Identifier(EphemeralWorlds.MODID, "textures/sprite/circle.png");
     public static final Identifier FUSION_CIRCLE = new Identifier(EphemeralWorlds.MODID, "textures/sprite/fusion_circle.png");
+    public static final Identifier INK_CIRCLE = new Identifier(EphemeralWorlds.MODID, "textures/sprite/ink_circle.png");
+    public static final Identifier FIRE_CIRCLE = new Identifier(EphemeralWorlds.MODID, "textures/sprite/fire_circle.png");
     public static final Identifier GENERIC_CIRCLE = new Identifier(EphemeralWorlds.MODID, "textures/sprite/generic_circle.png");
 //    public static final Identifier CIRCLE = new Identifier(EphemeralWorlds.MODID, "textures/sprite/circle.png");
 //    public static final Identifier CIRCLE = new Identifier(EphemeralWorlds.MODID, "textures/sprite/circle.png");
@@ -62,6 +62,10 @@ public class SpriteHandler {
     public static Identifier getCircle(ACircle circle) {
         if (circle instanceof FusionCircle)
             return FUSION_CIRCLE;
+        else if (circle instanceof InkCircle)
+            return INK_CIRCLE;
+        else if (circle instanceof FireCircle)
+            return FIRE_CIRCLE;
 
         else if (circle instanceof GenericCircle)
             return GENERIC_CIRCLE;

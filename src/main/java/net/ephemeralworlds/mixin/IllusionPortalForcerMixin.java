@@ -32,8 +32,6 @@ public class IllusionPortalForcerMixin {
 
         // Enter illusion
         if (world.getDimension().getType() == ModDimensions.ephemerium) {
-            BlockPos position = entity.getBlockPos();
-
             CompoundTag tag = PlayerData.get((PlayerEntity) entity, EphemeralWorlds.MODID);
             tag.putLong("pos", entity.getBlockPos().asLong());
             tag.putInt("dimension", entity.getEntityWorld().getDimension().getType().getRawId());

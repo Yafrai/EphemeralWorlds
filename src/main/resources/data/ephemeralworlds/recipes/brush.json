@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " w",
+    "s "
+  ],
+  "key": {
+    "w": {
+      "item": "minecraft:white_wool"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "ephemeralworlds:brush",
+    "count": 1
+  }
+}

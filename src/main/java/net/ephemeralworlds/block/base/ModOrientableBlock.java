@@ -14,6 +14,7 @@ import net.minecraft.util.math.Direction;
 
 public class ModOrientableBlock extends ModBlock {
 
+    // Block oriented along one of the 4 horizontal directions
     public static final DirectionProperty FACING;
 
     public ModOrientableBlock(String uname, Block base) {

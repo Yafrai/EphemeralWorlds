@@ -1,6 +1,10 @@
 package net.ephemeralworlds.dimension.generation;
 
 import com.google.common.collect.Sets;
+import it.unimi.dsi.fastutil.longs.LongIterator;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import it.unimi.dsi.fastutil.objects.ObjectList;
+import it.unimi.dsi.fastutil.objects.ObjectListIterator;
 import net.ephemeralworlds.biome.feature.ModFeatures;
 import net.ephemeralworlds.biome.feature.ModTreeFeature;
 import net.ephemeralworlds.block.base.ColorBlock;
@@ -12,11 +16,30 @@ import net.ephemeralworlds.utils.tools.BlockAndPos;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.structure.JigsawJunction;
+import net.minecraft.structure.PoolStructurePiece;
+import net.minecraft.structure.StructurePiece;
+import net.minecraft.structure.StructureStart;
+import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.MutableIntBoundingBox;
+import net.minecraft.util.math.noise.OctavePerlinNoiseSampler;
+import net.minecraft.util.math.noise.PerlinNoiseSampler;
+import net.minecraft.world.Heightmap;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkSection;
+import net.minecraft.world.chunk.ProtoChunk;
+import net.minecraft.world.gen.ChunkRandom;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.StructureFeature;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -61,7 +84,7 @@ public class IslandGenerator {
                 break;
 
             case LAKE:
-                generateGround(options, blocks, DIRT, SAND, STONE, 2, random, world);
+                generateGround(options, blocks, GRASS, DIRT, STONE, 2, random, world);
                 break;
 
             case RUINS:
@@ -83,7 +106,8 @@ public class IslandGenerator {
 
     public static void generateGround(InstanceOptions options, List<BlockAndPos> blocks, BlockState surface, BlockState under, BlockState deep, int reduction, Random random, World world) {
         int r = options.getRadius();
-        int y = options.getCenterY();
+
+        NoiseGenerator noiseGenerator = new NoiseGenerator(random);
 
         float terium_density = 1/16F;
         float xerium_density = 1/16F;
@@ -93,25 +117,36 @@ public class IslandGenerator {
 
         BlockState state;
 
-        while (r>0) {
-            for (int x = -r; x <= r; x++) {
-                int zm = (int) Math.round(Math.sqrt(r * r - x * x));
-                for (int z = -zm; z <= zm; z++) {
+        for (int x = -r; x <= r; x++) {
+            int zm = (int) Math.round(Math.sqrt(r * r - x * x));
+            for (int z = -zm; z <= zm; z++) {
 
-                    boolean terium = random.nextFloat() < terium_density;
-                    boolean xerium = random.nextFloat() < xerium_density;
-                    boolean gem1 = random.nextFloat() < gem1_density;
-                    boolean gem2 = random.nextFloat() < gem2_density;
-                    boolean gem3 = random.nextFloat() < gem3_density;
+//                double n = noiseGenerator.sampleNoise(x, z);
+                double n = noiseGenerator.sampleNoise(x, z);
+                int h = options.getCenterY() + (int)Math.round(75 * n);
+                double current_r = Math.sqrt(Math.pow(x, 2) + Math.pow(z, 2));
+                double d = (r-current_r)/(1.1*r-current_r) * r / (5 * current_r / r + r/64F);
+                int negative_h = options.getCenterY() - (int)Math.round(d)  - random.nextInt(3);
 
-                    if (y == options.getCenterY())
+                for (int y=h; y>=negative_h; y--) {
+
+                    boolean terium = random.nextFloat() < terium_density && y < options.getCenterY();
+                    boolean xerium = random.nextFloat() < xerium_density && y < options.getCenterY();
+                    boolean gem1 = random.nextFloat() < gem1_density && y < options.getCenterY();
+                    boolean gem2 = random.nextFloat() < gem2_density && y < options.getCenterY() - 8;
+                    boolean gem3 = random.nextFloat() < gem3_density && y < options.getCenterY() - 16;
+
+                    if (y >= h)
                         state = surface;
-                    else if (y <= options.getCenterY()-3 || Math.abs(x) == r || Math.abs(z) == zm)
+//                    else if (y <= options.getCenterY() - 3 || Math.abs(x) == r || Math.abs(z) == zm)
+                    else if (y <= h - 3)
                         state = deep;
                     else
                         state = under;
 
-                    if (terium || xerium || gem1 || gem2 || gem3 && state.getBlock().equals(ModBlocks.COLOR_STONE)) {
+                    Block currentBlock = state.getBlock();
+
+                    if ((terium || xerium || gem1 || gem2 || gem3) && currentBlock.equals(ModBlocks.COLOR_STONE)) {
                         if (gem3)
                             state = ColorBlock.getStateWithColor(ModBlocks.GEM_ORE3.getDefaultState(), options.getColor());
                         else if (gem2)
@@ -120,25 +155,25 @@ public class IslandGenerator {
                             state = ColorBlock.getStateWithColor(ModBlocks.GEM_ORE1.getDefaultState(), options.getColor());
                         else {
                             if (terium && xerium) {
-                                Block ore = random.nextBoolean()?ModBlocks.TERIUM_ORE:ModBlocks.XERIUM_ORE;
+                                Block ore = random.nextBoolean() ? ModBlocks.TERIUM_ORE : ModBlocks.XERIUM_ORE;
                                 state = ColorBlock.getStateWithColor(ore.getDefaultState(), options.getColor());
-                            }
-                            else if (terium)
+                            } else if (terium)
                                 state = ColorBlock.getStateWithColor(ModBlocks.TERIUM_ORE.getDefaultState(), options.getColor());
                             else
                                 state = ColorBlock.getStateWithColor(ModBlocks.XERIUM_ORE.getDefaultState(), options.getColor());
                         }
                     }
-
                     blocks.add(new BlockAndPos(state, new BlockPos(x + options.getCenterX(), y, z + options.getCenterZ()), false));
                 }
             }
-
-            r -= reduction;
-            y--;
         }
 
         generate(blocks, world);
+
+        BlockPos spawn = options.getSpawn();
+        BlockPos newSpawn = getHeightAtPos(options, random, spawn, world);
+        options.setSpawn(newSpawn);
+
     }
 
     // Densities are in average nb of tress per chunk
@@ -158,10 +193,12 @@ public class IslandGenerator {
         int count = Math.round((int)Math.floor(density)) + (up?1:0);
         while (count > 0) {
             BlockPos position = getRandomPosition(options, random);
-            feature.generate(Sets.newHashSet(), world, random, position, MutableIntBoundingBox.empty());
+
+            BlockPos surfacePos = getHeightAtPos(options, random, position, world);
+
+            feature.generate(Sets.newHashSet(), world, random, surfacePos, MutableIntBoundingBox.empty());
             count--;
         }
-
     }
 
     public static void generateWastelandDecorations(InstanceOptions options, List<BlockAndPos> blocks) {
@@ -177,9 +214,29 @@ public class IslandGenerator {
 
             pos = new BlockPos(x, options.getCenterY(), z);
 
-            if (pos.isWithinDistance(options.getCenter(), options.getRadius()))
+            if (pos.isWithinDistance(options.getCenter(), options.getRadius())) {
                 return pos.up();
+            }
         }
+    }
+
+    public static BlockPos getHeightAtPos(InstanceOptions options, Random random, BlockPos position, World world) {
+
+        BlockState state;
+        BlockPos pos = position.up(8);
+        while (pos.getY() > 1) {
+            state = world.getBlockState(pos);
+
+            Block block = state.getBlock();
+
+            if (block.equals(ModBlocks.COLOR_DIRT) || block.equals(ModBlocks.COLOR_GRASS) || block.equals(ModBlocks.COLOR_STONE) || block.equals(ModBlocks.COLOR_SAND)) {
+                return pos.up();
+            }
+
+            pos = pos.down();
+        }
+
+        return position;
     }
 
     public static void generate(List<BlockAndPos> blocks, World world) {

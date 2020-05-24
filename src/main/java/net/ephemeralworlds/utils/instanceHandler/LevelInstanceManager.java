@@ -41,9 +41,6 @@ public class LevelInstanceManager implements IWorldInstanceManager, LevelSyncedC
             if (option.hasExpired()) {
                 instances.remove(i);
             }
-
-            if (EphemeralWorlds.ILLUSION_WORLD.getTime() > option.expiration)
-                option.isDecaying = true;
         }
 
         // Add new instance
@@ -69,7 +66,7 @@ public class LevelInstanceManager implements IWorldInstanceManager, LevelSyncedC
         return inst;
     }
 
-    public InstanceOptions getInstanceFromCoord(BlockPos pos) {
+    public InstanceOptions getInstance(BlockPos pos) {
 
         int x, z;
 
@@ -87,7 +84,7 @@ public class LevelInstanceManager implements IWorldInstanceManager, LevelSyncedC
 
     @Override
     public EnumColor getInstanceColorFromCoord(BlockPos pos) {
-        InstanceOptions instance = getInstanceFromCoord(pos);
+        InstanceOptions instance = getInstance(pos);
 
         if (instance == null)
             return null;
@@ -135,4 +132,9 @@ public class LevelInstanceManager implements IWorldInstanceManager, LevelSyncedC
     }
 
 
+    public InstanceOptions[] getAllInstancesOptions() {
+        InstanceOptions[] opts = new InstanceOptions[instances.size()];
+        instances.toArray(opts);
+        return opts;
+    }
 }

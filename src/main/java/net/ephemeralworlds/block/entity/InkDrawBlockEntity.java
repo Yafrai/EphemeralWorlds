@@ -38,6 +38,10 @@ public class InkDrawBlockEntity extends ModTickingBlockEntity  {
         return null;
     }
 
+    public void eraseFaceContents(ISerializablePart reference) {
+        eraseFaceContents(getFace(reference));
+    }
+
     public void eraseFaceContents(Direction face) {
         if (drawing.containsKey(face)) {
             drawing.get(face).drop();
@@ -104,13 +108,23 @@ public class InkDrawBlockEntity extends ModTickingBlockEntity  {
 
                 switch (drawingTag.getString("name")) {
                     case "fusion_circle":
-                        part = new FusionCircle(this);
+                        part = new FusionCircle(this, face);
+                        part.fromTag(drawingTag);
+                        break;
+                    case "fire_circle":
+                        part = new FireCircle(this, face);
+                        part.fromTag(drawingTag);
+                        break;
+                    case "ink_circle":
+                        part = new InkCircle(this, face, EnumColor.byIndex(tag.getInt("color")));
                         part.fromTag(drawingTag);
                         break;
                     case "generic_circle":
-                        part = new GenericCircle(this, null);
+                        part = new GenericCircle(this, face,null);
                         part.fromTag(drawingTag);
                         break;
+                    default:
+                        int a = 1 / 0;
                 }
 
                 if (part != null)

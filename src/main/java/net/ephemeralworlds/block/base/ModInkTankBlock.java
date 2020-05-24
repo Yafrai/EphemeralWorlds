@@ -1,8 +1,5 @@
 package net.ephemeralworlds.block.base;
 
-import net.ephemeralworlds.block.base.ModBlock;
-import net.ephemeralworlds.block.entity.EaselBlockEntity;
-import net.ephemeralworlds.block.entity.InkJarBlockEntity;
 import net.ephemeralworlds.block.entity.base.ModInkTankBlockEntity;
 import net.ephemeralworlds.item.Brush;
 import net.ephemeralworlds.utils.enums.EnumColor;

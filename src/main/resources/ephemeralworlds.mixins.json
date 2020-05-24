@@ -3,8 +3,10 @@
   "package": "net.ephemeralworlds.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "BlockMixin",
     "ItemUseMixin",
     "CraftingTableMixin",
+    "FurnaceMixin",
     "MushroomMixin",
     "PlayerEntityMixin",
     "IllusionPortalForcerMixin"

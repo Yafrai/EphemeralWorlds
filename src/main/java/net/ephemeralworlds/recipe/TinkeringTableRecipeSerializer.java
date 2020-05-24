@@ -2,7 +2,6 @@ package net.ephemeralworlds.recipe;
 
 
 import com.google.gson.*;
-import net.ephemeralworlds.utils.enums.EnumColor;
 import net.ephemeralworlds.utils.enums.EnumRecipeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,11 +14,9 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.registry.Registry;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
-public class EaselRecipeSerializer implements RecipeSerializer<EaselRecipe> {
+public class TinkeringTableRecipeSerializer implements RecipeSerializer<TinkeringTableRecipe> {
 
     private static ItemStack parseItemStack(JsonObject jsonObject) {
         String itemName = JsonHelper.getString(jsonObject, "item");
@@ -50,32 +47,20 @@ public class EaselRecipeSerializer implements RecipeSerializer<EaselRecipe> {
     }
 
     @Override
-    public EaselRecipe read(Identifier identifier, JsonObject jsonObject) {
-        Ingredient main = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "main"));
+    public TinkeringTableRecipe read(Identifier identifier, JsonObject jsonObject) {
         DefaultedList<Ingredient> ingredients = parseIngredientList(JsonHelper.getArray(jsonObject, "ingredients"));
         ItemStack output = parseItemStack(JsonHelper.getObject(jsonObject, "result"));
 
-        if (main.isEmpty()) {
-            throw new JsonParseException("No main ingredient in easel recipe");
-        } else if (ingredients.size() > 9) {
-            throw new JsonParseException("Too many ingredients in easel recipe (more than 5)");
-        }
-
-        String colorStr = JsonHelper.getString(jsonObject, "color");
-        boolean copyColor = JsonHelper.getBoolean(jsonObject, "recolor");
-
-        EnumRecipeColor color = EnumRecipeColor.byName(colorStr);
-        return new EaselRecipe(identifier, output, main, ingredients, color, copyColor);
-
+        return new TinkeringTableRecipe(identifier, output, ingredients);
     }
 
     @Override
-    public EaselRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
+    public TinkeringTableRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
         return null;
     }
 
     @Override
-    public void write(PacketByteBuf packetByteBuf, EaselRecipe easelRecipe) {
-        int a = 0;
+    public void write(PacketByteBuf packetByteBuf, TinkeringTableRecipe fusionCircleRecipe) {
+
     }
 }

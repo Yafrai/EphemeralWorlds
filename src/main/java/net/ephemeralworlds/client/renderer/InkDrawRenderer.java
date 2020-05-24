@@ -63,7 +63,9 @@ public class InkDrawRenderer extends ModBlockEntityRenderer<InkDrawBlockEntity> 
 
     public void renderCircle(InkDrawBlockEntity entity, double renderX, double renderY, double renderZ, float partialTicks, int destroyStage, Direction face, ACircle circle) {
         float e = 0.01F;
-        renderSprite(renderX, renderY, renderZ, e, e, e, 1-e, 1-e, 1-e, SpriteHandler.getCircle(circle), circle.getColor().getColorValue(), 0.9F, face);
+        float alpha = circle.isFainting() ? (1F - circle.getFaintingRate()) * .9F : 0.9F;
+        float rotation = 360 * circle.getProcessingRatio();
+        renderSprite(renderX, renderY, renderZ, e, e, e, 1-e, 1-e, 1-e, SpriteHandler.getCircle(circle), circle.getColor().getColorValue(), alpha, face, rotation);
 
         if (circle instanceof AInventoryCircle) {
             AInventoryCircle invCircle = (AInventoryCircle)circle;

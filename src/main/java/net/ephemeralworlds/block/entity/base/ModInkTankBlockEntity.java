@@ -73,8 +73,14 @@ public abstract class ModInkTankBlockEntity extends ModBlockEntity implements Bl
         // Check valid amount
         if (storedInk + amount > getTankSize()) {
             int transferred = getTankSize() - storedInk;
-            addInk(transferred, color);
-            return getRestrictedTransferStatus(transferred, color);
+            if (transferred > 0) {
+                addInk(transferred, color);
+                return getRestrictedTransferStatus(transferred, color);
+            }
+            else {
+                drawInk(-transferred);
+                return getFailedTransferStatus();
+            }
         }
 
         // Success
@@ -113,7 +119,7 @@ public abstract class ModInkTankBlockEntity extends ModBlockEntity implements Bl
     }
 
     // Effective action without checks
-    private void addInk(int amount, EnumColor color) {
+    protected void addInk(int amount, EnumColor color) {
         storedInk += amount;
         if (storedInk > getTankSize())
             storedInk = getTankSize();
@@ -123,12 +129,19 @@ public abstract class ModInkTankBlockEntity extends ModBlockEntity implements Bl
     }
 
     // Effective action without checks
-    private void drawInk(int amount) {
+    protected void drawInk(int amount) {
         storedInk -= amount;
         if (storedInk <= 0) {
             storedInk = 0;
             storedInkColor = null;
         }
+        saveAndNotify();
+    }
+
+    // Empty ink
+    protected void emptyInk() {
+        storedInk = 0;
+        storedInkColor = null;
         saveAndNotify();
     }
 
@@ -144,7 +157,7 @@ public abstract class ModInkTankBlockEntity extends ModBlockEntity implements Bl
         return new InkTransferStatus(amount, color, true, true);
     }
 
-    protected class InkTransferStatus {
+    public class InkTransferStatus {
         int transferredInkAmount;
         EnumColor transferredInkColor;
         boolean hasTransferredInk; // at least 1 unit
@@ -155,6 +168,10 @@ public abstract class ModInkTankBlockEntity extends ModBlockEntity implements Bl
             transferredInkColor = color;
             hasTransferredInk = success;
             hasTransferredAllInk = totalSuccess;
+        }
+
+        public boolean isSuccess() {
+            return hasTransferredInk;
         }
     }
 

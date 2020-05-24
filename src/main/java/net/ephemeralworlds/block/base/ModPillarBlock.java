@@ -12,6 +12,7 @@ import net.minecraft.util.math.Direction;
 
 public class ModPillarBlock extends ModBlock {
 
+    // Block oriented along X, Y or Z axis
     public static final EnumProperty<Direction.Axis> AXIS;
 
     public ModPillarBlock(String uname, Block base) {

@@ -1,5 +1,6 @@
 package net.ephemeralworlds.utils.instanceHandler;
 
+import net.ephemeralworlds.EphemeralWorlds;
 import net.ephemeralworlds.biome.base.ModBiome;
 import net.ephemeralworlds.utils.enums.EnumColor;
 import net.ephemeralworlds.utils.helpers.PlayerHelper;
@@ -13,13 +14,12 @@ import java.util.Random;
 
 public class InstanceOptions {
     public static int BASE_RADIUS = 16;
-    public static int BASE_MIN_Y = 32;
-    public static int BASE_MAX_Y = 64;
-    public static int INSTANCE_WIDTH = 100*16; // Instance width in which the player is allowed to stand
-    public static int INSTANCE_MARGIN = 16*16; // Margin that separates 2 instances
+    public static int BASE_MIN_Y = BASE_RADIUS;
+    public static int BASE_MAX_Y = 2*BASE_RADIUS;
+//    public static int INSTANCE_WIDTH = 100*16; // Instance width in which the player is allowed to stand
+//    public static int INSTANCE_MARGIN = 16*16; // Margin that separates 2 instances
 
     PlayerEntity owner;
-    boolean isDecaying;
     boolean hasExpired;
     EnumColor color;
     BlockPos spawn;
@@ -35,7 +35,6 @@ public class InstanceOptions {
     public InstanceOptions(PlayerEntity owner, CompoundTag potionTag, LevelInstanceManager manager) {
         this.owner = owner;
         hasExpired = false;
-        isDecaying = false;
 
         random = new Random();
 
@@ -48,7 +47,7 @@ public class InstanceOptions {
         this.expiration = 3 * 20 * 60;
     }
 
-    protected EnumColor getColor(CompoundTag potionTag) {
+    public EnumColor getColor(CompoundTag potionTag) {
         if (potionTag.containsKey("color")) {
             return EnumColor.byIndex(potionTag.getInt("color"));
         }
@@ -123,7 +122,9 @@ public class InstanceOptions {
     public void setSpawn(BlockPos pos) {
         this.spawn = pos;
     }
-    public int getSpawnX() {
+    public BlockPos getSpawn() {
+        return spawn;
+    }public int getSpawnX() {
         return spawn.getX();
     }
     public int getSpawnY() {
@@ -148,11 +149,11 @@ public class InstanceOptions {
     public int getRadius() {return radius;}
     public int getIslandLevel() {return islandLevel;}
 
-    boolean isDecaying() {
-        return isDecaying;
+    public boolean isDecaying() {
+        return (EphemeralWorlds.ILLUSION_WORLD.getTime() > this.expiration);
     }
 
-    boolean hasExpired() {
+    public boolean hasExpired() {
         return hasExpired;
     }
 
@@ -160,7 +161,6 @@ public class InstanceOptions {
 
         tag.putString("owner_"+suffix, owner!=null?owner.getName().asString():"");
         tag.putBoolean("expired_"+suffix, hasExpired);
-        tag.putBoolean("decaying_"+suffix, isDecaying);
         tag.putLong("expiration_"+suffix, expiration);
         tag.putInt("color_"+suffix, color.getIndex());
         tag.putInt("x_"+suffix, spawn.getX());

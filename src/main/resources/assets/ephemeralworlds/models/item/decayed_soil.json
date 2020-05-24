@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/decayed_soil",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/decayed_soil"
+  }
+}

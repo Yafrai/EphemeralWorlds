@@ -38,6 +38,16 @@ public class ModInventoryBlockEntity extends ModBlockEntity implements Inventory
         return size;
     }
 
+    public int getInvSizeNotEmpty() {
+        int count = 0;
+        for (int i=0; i<size; i++) {
+            if (!getInvStack(i).isEmpty())
+                count++;
+        }
+
+        return count;
+    }
+
     @Override
     public boolean isInvEmpty() {
         for (ItemStack stack : inventory) {

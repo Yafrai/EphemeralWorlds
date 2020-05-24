@@ -5,11 +5,9 @@ import net.ephemeralworlds.EphemeralWorlds;
 import net.ephemeralworlds.item.base.ColorItem;
 import net.ephemeralworlds.utils.enums.EnumColor;
 import net.ephemeralworlds.utils.enums.EnumRecipeColor;
-import net.ephemeralworlds.utils.helpers.ColorHelper;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
@@ -21,9 +19,9 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EaselRecipe implements Recipe<Inventory> {
-    public static RecipeSerializer<EaselRecipe> SERIALIZER;
-    public static RecipeType<EaselRecipe> TYPE = RecipeType.register(EphemeralWorlds.MODID + "easel");
+public class FusionCircleRecipe implements Recipe<Inventory> {
+    public static RecipeSerializer<FusionCircleRecipe> SERIALIZER;
+    public static RecipeType<FusionCircleRecipe> TYPE = RecipeType.register(EphemeralWorlds.MODID + "fusion");
 
     private final DefaultedList<Ingredient> input;
     private final Ingredient main;
@@ -32,7 +30,7 @@ public class EaselRecipe implements Recipe<Inventory> {
     private final EnumRecipeColor color;
     private final boolean copyColor;
 
-    public EaselRecipe(Identifier id, ItemStack output, Ingredient main, DefaultedList<Ingredient> input, EnumRecipeColor color, boolean copyColor) {
+    public FusionCircleRecipe(Identifier id, ItemStack output, Ingredient main, DefaultedList<Ingredient> input, EnumRecipeColor color, boolean copyColor) {
         this.id = id;
         this.main = main;
         this.input = input;
@@ -120,7 +118,7 @@ public class EaselRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public RecipeSerializer<EaselRecipe> getSerializer() {
+    public RecipeSerializer<FusionCircleRecipe> getSerializer() {
         return SERIALIZER;
     }
 

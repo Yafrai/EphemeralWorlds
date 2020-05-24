@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.DefaultedList;
+import net.minecraft.util.math.Direction;
 
 import java.util.Set;
 
@@ -16,8 +17,8 @@ public abstract class AInventoryCircle extends ACircle implements Inventory {
 
     protected DefaultedList<ItemStack> inventory;
 
-    public AInventoryCircle(InkDrawBlockEntity drawEntity, EnumColor color) {
-        super(drawEntity, color);
+    public AInventoryCircle(InkDrawBlockEntity drawEntity, Direction face, EnumColor color) {
+        super(drawEntity, face, color);
         this.drawEntity = drawEntity;
         this.inventory = DefaultedList.ofSize(getInvSize(), ItemStack.EMPTY);
     }

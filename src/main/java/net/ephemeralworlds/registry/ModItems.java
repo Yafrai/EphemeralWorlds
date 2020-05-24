@@ -45,6 +45,11 @@ public class ModItems {
     public static final Item TERIUM_NUGGET = new ModItem("terium_nugget");
     public static final Item XERIUM_NUGGET = new ModItem("xerium_nugget");
 
+    public static final Item HOURGLASS = new ColorItem("hourglass", false);
+    public static final Item PRISM = new ModItem("prism");
+    public static final Item TOP = new ModItem("top");
+    public static final Item MIRROR = new ModItem("mirror");
+
     public static void registerItems() {
         for (Pair<String, Item> pair: ITEMS) {
             String name = pair.getLeft();

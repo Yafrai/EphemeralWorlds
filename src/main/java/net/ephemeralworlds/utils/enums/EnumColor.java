@@ -66,7 +66,7 @@ public enum EnumColor implements StringIdentifiable {
     public static EnumColor byIndex(int index) {
         if (index == -1)
             return null;
-        return values()[index];
+        return index <= values().length ? values()[index] : EnumColor.byIndex(0);
     }
 
     EnumColor(int index, String name, int order, int redValue, int greenValue, int blueValue)

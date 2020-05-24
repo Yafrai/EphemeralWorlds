@@ -13,6 +13,7 @@ import net.minecraft.util.math.Direction;
 
 public class ColorPillarBlock extends ColorBlock {
 
+    // Block oriented along X, Y or Z axis
     public static final EnumProperty<Direction.Axis> AXIS;
 
     public ColorPillarBlock(String uname, Block base, EnumColorBrightness brightness) {

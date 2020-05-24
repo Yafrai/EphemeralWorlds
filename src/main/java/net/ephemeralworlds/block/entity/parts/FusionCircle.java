@@ -1,33 +1,34 @@
 package net.ephemeralworlds.block.entity.parts;
 
+import net.ephemeralworlds.block.InkDraw;
 import net.ephemeralworlds.block.entity.InkDrawBlockEntity;
 import net.ephemeralworlds.item.Brush;
-import net.ephemeralworlds.recipe.EaselRecipe;
+import net.ephemeralworlds.recipe.FusionCircleRecipe;
 import net.ephemeralworlds.utils.enums.EnumColor;
-import net.ephemeralworlds.utils.enums.EnumGlyph;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.DefaultedList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 
-import javax.swing.*;
 import java.util.Optional;
-import java.util.Set;
 
 public class FusionCircle extends AInventoryCircle {
 
     EnumColor paintColor = null;
 
-    public FusionCircle(InkDrawBlockEntity drawEntity) {
-        super(drawEntity, EnumColor.BLUE);
+    public FusionCircle(InkDrawBlockEntity drawEntity, Direction face) {
+        super(drawEntity, face, EnumColor.BLUE);
     }
 
     @Override
     public String getName() {
         return "fusion_circle";
+    }
+
+    @Override
+    public int getMaxUsages() {
+        return 1;
     }
 
     public boolean activateWithPaint(ItemStack brushStack) {
@@ -36,7 +37,7 @@ public class FusionCircle extends AInventoryCircle {
             return false;
         Brush brush = (Brush)brushStack.getItem();
 
-        Optional<EaselRecipe> recipe = getWorld().getRecipeManager().getFirstMatch(EaselRecipe.TYPE, this, getWorld());
+        Optional<FusionCircleRecipe> recipe = getWorld().getRecipeManager().getFirstMatch(FusionCircleRecipe.TYPE, this, getWorld());
 
         if (recipe.isPresent() && brush.getTagInkAmount(brushStack) >= 1 && recipe.get().colorFits(brush.getTagColor(brushStack))) {
 //            inventory.clear();
@@ -52,16 +53,18 @@ public class FusionCircle extends AInventoryCircle {
         return false;
     }
 
-    public boolean endRecipe() {
+    public boolean endAction() {
         // todo amount
         int amount = 1;
-        Optional<EaselRecipe> recipe = getWorld().getRecipeManager().getFirstMatch(EaselRecipe.TYPE, this, getWorld());
+        Optional<FusionCircleRecipe> recipe = getWorld().getRecipeManager().getFirstMatch(FusionCircleRecipe.TYPE, this, getWorld());
 
         if (recipe.isPresent() && amount >= 1 && recipe.get().colorFits(paintColor)) {
             inventory.clear();
-            inventory.set(0, recipe.get().getActualOutput(paintColor).copy());
-
-            activate(false);
+//            inventory.set(0, recipe.get().getActualOutput(paintColor).copy());
+            BlockPos pos = drawEntity.getPos();
+            ItemEntity itemEntity = new ItemEntity(getWorld(), pos.getX(), pos.getY(), pos.getZ(), recipe.get().getActualOutput(paintColor).copy());
+            getWorld().spawnEntity(itemEntity);
+//            activate(false);
             paintColor = null;
             return true;
         }
@@ -86,11 +89,12 @@ public class FusionCircle extends AInventoryCircle {
 
     @Override
     public void tick() {
+        super.tick();
         if (paintColor == null)
             return;
 
-        if (getWorld().getTime() - activatedSince >= 5 * 20)
-            endRecipe();
+//        if (getWorld().getTime() - activatedSince >= 5 * 20)
+//            endRecipe();
     }
 
     long getActivationTime() {
@@ -120,10 +124,10 @@ public class FusionCircle extends AInventoryCircle {
         long t = getActivationTime();
 
         if (t > 5 * 20) {
-            return 0F;
+            return 0.05F;
         }
         else if (t > 3 * 20) {
-            return -0.01F * t + 1F;
+            return 0.825F * (1F - 0.01F * t) + 0.05F;
         }
 
         return 0.4F;
@@ -131,7 +135,7 @@ public class FusionCircle extends AInventoryCircle {
 
     @Override
     public boolean lockedItems() {
-        return paintColor != null;
+        return paintColor != null || fainting;
     }
 
     @Override

@@ -1,23 +1,30 @@
 package net.ephemeralworlds.block.entity.parts;
 
 import net.ephemeralworlds.block.entity.InkDrawBlockEntity;
-import net.ephemeralworlds.item.Brush;
-import net.ephemeralworlds.recipe.EaselRecipe;
 import net.ephemeralworlds.utils.enums.EnumColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-
-import java.util.Optional;
+import net.minecraft.util.math.Direction;
 
 public class FireCircle extends ACircle {
 
-    public FireCircle(InkDrawBlockEntity drawEntity) {
-        super(drawEntity, EnumColor.RED);
+    public FireCircle(InkDrawBlockEntity drawEntity, Direction face) {
+        super(drawEntity, face, EnumColor.RED);
     }
 
     @Override
     public String getName() {
         return "fire_circle";
+    }
+
+    @Override
+    public int getMaxUsages() {
+        return 1;
+    }
+
+    @Override
+    public boolean endAction() {
+        return false;
     }
 
 

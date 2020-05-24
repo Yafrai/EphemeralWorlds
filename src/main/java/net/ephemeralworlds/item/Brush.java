@@ -1,6 +1,7 @@
 package net.ephemeralworlds.item;
 
 import net.ephemeralworlds.block.InkDraw;
+import net.ephemeralworlds.block.base.ColorBlock;
 import net.ephemeralworlds.block.entity.InkDrawBlockEntity;
 import net.ephemeralworlds.block.entity.parts.*;
 import net.ephemeralworlds.item.base.ColorTieredIngredientsItem;
@@ -9,6 +10,7 @@ import net.ephemeralworlds.utils.enums.EnumColor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CraftingTableBlock;
+import net.minecraft.block.FurnaceBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -73,7 +75,7 @@ public class Brush extends ColorTieredIngredientsItem {
                     if (entity instanceof InkDrawBlockEntity) {
 
                         if (!((InkDrawBlockEntity)entity).isFaceDrawn(side.getOpposite())) {
-                            return drawOnBlock((InkDrawBlockEntity)entity, world.getBlockState(blockPos).getBlock(), side, brush.getTagColor(stack), stack);
+                            return drawOnBlock((InkDrawBlockEntity)entity, world.getBlockState(blockPos), side, brush.getTagColor(stack), stack);
                         }
                         else {
                             ISerializablePart part = ((InkDrawBlockEntity)entity).getFaceContents(side.getOpposite());
@@ -89,19 +91,39 @@ public class Brush extends ColorTieredIngredientsItem {
         return false;
     }
 
-    public boolean drawOnBlock(InkDrawBlockEntity blockEntity, Block supportBlock, Direction side, EnumColor color, ItemStack brushStack) {
+    public boolean drawOnBlock(InkDrawBlockEntity blockEntity, BlockState supportBlockState, Direction side, EnumColor color, ItemStack brushStack) {
+        Block supportBlock = supportBlockState.getBlock();
 
         if (supportBlock instanceof CraftingTableBlock) {
             if (color == EnumColor.BLUE) {
-                FusionCircle circle = new FusionCircle(blockEntity);
+                FusionCircle circle = new FusionCircle(blockEntity, side);
                 blockEntity.setCircle(side.getOpposite(), circle);
                 useInk(brushStack, 1);
                 return true;
             }
         }
 
+        else if (supportBlock instanceof FurnaceBlock) {
+            if (color == EnumColor.RED) {
+                FireCircle circle = new FireCircle(blockEntity, side);
+                blockEntity.setCircle(side.getOpposite(), circle);
+                useInk(brushStack, 1);
+                return true;
+            }
+        }
+
+//        else if (supportBlock.equals(ModBlocks.COLOR_LOG) || supportBlock.equals(ModBlocks.COLOR_PLANKS)) {
+        else if (supportBlock.equals(ModBlocks.RUNE_STONE)) {
+//            if (color == ColorBlock.getEnumColor(supportBlockState)) {
+                InkCircle circle = new InkCircle(blockEntity, side, color);
+                blockEntity.setCircle(side.getOpposite(), circle);
+                useInk(brushStack, 1);
+                return true;
+//            }
+        }
+
         else {
-            GenericCircle circle = new GenericCircle(blockEntity, color);
+            GenericCircle circle = new GenericCircle(blockEntity, side, color);
             blockEntity.setCircle(side.getOpposite(), circle);
             useInk(brushStack, 1);
             return true;

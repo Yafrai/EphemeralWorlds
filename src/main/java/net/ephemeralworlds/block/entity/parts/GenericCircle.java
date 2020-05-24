@@ -4,11 +4,12 @@ import net.ephemeralworlds.block.entity.InkDrawBlockEntity;
 import net.ephemeralworlds.utils.enums.EnumColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.math.Direction;
 
 public class GenericCircle extends AInventoryCircle {
 
-    public GenericCircle(InkDrawBlockEntity drawEntity, EnumColor color) {
-        super(drawEntity, color);
+    public GenericCircle(InkDrawBlockEntity drawEntity, Direction face, EnumColor color) {
+        super(drawEntity, face, color);
     }
 
     @Override
@@ -19,6 +20,16 @@ public class GenericCircle extends AInventoryCircle {
     @Override
     public String getName() {
         return "generic_circle";
+    }
+
+    @Override
+    public int getMaxUsages() {
+        return 1;
+    }
+
+    @Override
+    public boolean endAction() {
+        return false;
     }
 
     @Override
