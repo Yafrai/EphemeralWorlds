@@ -25,7 +25,7 @@ import java.util.List;
 public class ModBlock extends Block {
 
     public ModBlock(String uname, Block base) {
-        this(uname, FabricBlockSettings.copy(base).build());
+        this(uname, FabricBlockSettings.copy(base).ticksRandomly().build());
     }
 
     public ModBlock(String uname, Settings settings) {

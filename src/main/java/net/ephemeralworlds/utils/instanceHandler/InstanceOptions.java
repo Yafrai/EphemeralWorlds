@@ -44,7 +44,8 @@ public class InstanceOptions {
         this.spawn = findSpawn(manager);
         this.islandLevel = getLevelFromPotion(potionTag);
 
-        this.expiration = 3 * 20 * 60;
+//        this.expiration = 3 * 20 * 60;
+        this.expiration = 0;
     }
 
     public EnumColor getColor(CompoundTag potionTag) {

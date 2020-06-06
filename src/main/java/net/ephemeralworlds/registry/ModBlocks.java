@@ -55,6 +55,7 @@ public class ModBlocks {
     public static final Block SPIRIT_PLANKS = new ModBlock("spirit_planks", Blocks.OAK_PLANKS);
     public static final Block RIFT_LEAVES = new ModBlock("rift_leaves", Blocks.OAK_LEAVES);
     public static final Block RIFT_PLANKS = new ModBlock("rift_planks", Blocks.OAK_PLANKS);
+    public static final Block FLOWER = new ModFernBlock("flower", Blocks.FERN);
 
     // Dimension
     public static final Block GEM_ORE1 = new GemOre("gem_ore_1");

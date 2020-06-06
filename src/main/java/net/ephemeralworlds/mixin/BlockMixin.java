@@ -22,38 +22,38 @@ public class BlockMixin {
 	@Inject(method = "onRandomTick", at = @At("HEAD"), cancellable = true)
 	public void onRandomTick(BlockState blockState, World world, BlockPos blockPos, Random random, CallbackInfo info) {
 
-//		boolean decay = false;
+		if (world.isClient())
+			return;
+
+		if (world.getDimension().getType() != ModDimensions.ephemerium)
+			return;
+
+		boolean decay;
+		InstanceOptions options = DimensionHelper.getInstanceFromPosition(world, blockPos);
+		if (options != null)
+			decay = options.isDecaying();
+		else
+			decay = true;
+
+		if (decay) {
+			// Self
+			BlockState state = world.getBlockState(blockPos);
+			if (state.getBlock() != ModBlocks.DECAYED_SOIL && !state.isAir()) {
+				world.setBlockState(blockPos, ModBlocks.DECAYED_SOIL.getDefaultState());
+
+			// Underneath
+//			for (int h=0; h<=blockPos.getY(); h++) {
+//				BlockPos pos = new BlockPos(blockPos.getX(), h, blockPos.getZ());
+//				BlockState state = world.getBlockState(pos);
 //
-//		if (!world.isClient()) {
-//			if (world.getDimension().getType() == ModDimensions.ephemerium) {
-//
-//				InstanceOptions options = DimensionHelper.getInstanceFromPosition(world, blockPos);
-//				if (options != null) {
-//					decay = options.isDecaying();
+//				if (state.getBlock() != ModBlocks.DECAYED_SOIL && !state.isAir()) {
+//					world.setBlockState(pos, ModBlocks.DECAYED_SOIL.getDefaultState());
+//					break;
 //				}
-//				else
-//					decay = true;
-//			}
-//		}
-//
-//		if (decay) {
-//			if (blockState.getBlock() != ModBlocks.DECAYED_SOIL)
-//				world.setBlockState(blockPos, ModBlocks.DECAYED_SOIL.getDefaultState());
-//			else {
-//				int h = 0;
-//				 while (true) {
-//				 	h += 1;
-//				 	BlockPos newPos = blockPos.down(h);
-//				 	if (blockPos.getY() <= 0)
-//				 		break;
-//
-//				 	if (blockState.getBlock() != ModBlocks.DECAYED_SOIL && !blockState.isAir())
-//					 world.setBlockState(blockPos, ModBlocks.DECAYED_SOIL.getDefaultState());
-//					 break;
-//				 }
-//			}
-//		}
 
 
+
+			}
+		}
 	}
 }

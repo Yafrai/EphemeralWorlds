@@ -3,6 +3,7 @@ package net.ephemeralworlds.block.base;
 import com.google.common.collect.Lists;
 import net.ephemeralworlds.utils.enums.EnumColor;
 import net.ephemeralworlds.utils.enums.EnumColorBrightness;
+import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.color.block.BlockColorProvider;
@@ -24,7 +25,11 @@ public class ColorBlock extends ModBlock implements BlockColorProvider {
     private final EnumColorBrightness brightness;
 
     public ColorBlock(String uname, Block base, EnumColorBrightness brightness) {
-        super(uname, base);
+        this(uname, FabricBlockSettings.copy(base).ticksRandomly().build(), brightness);
+    }
+
+    public ColorBlock(String uname, Settings settings, EnumColorBrightness brightness) {
+        super(uname, settings);
         this.brightness = brightness;
         setDefaultState(getDefaultState().with(color, EnumColor.BLUE));
     }

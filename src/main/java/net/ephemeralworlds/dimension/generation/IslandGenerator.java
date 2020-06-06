@@ -79,7 +79,7 @@ public class IslandGenerator {
 
             case FOREST:
                 generateGround(options, blocks, GRASS, DIRT, STONE, 3, random, world);
-
+                generateFlowers(options, 5, random, world);
                 generateTrees(options, 5, 1/16F, random, world);
                 break;
 
@@ -174,6 +174,32 @@ public class IslandGenerator {
         BlockPos newSpawn = getHeightAtPos(options, random, spawn, world);
         options.setSpawn(newSpawn);
 
+    }
+
+    // Densities are in average nb of tress per chunk
+    public static void generateFlowers(InstanceOptions options, float flowerDensity, Random random, World world) {
+        float c = (float)Math.PI * options.getRadius() * options.getRadius() / 256;
+        float density = c * flowerDensity;
+
+        List<BlockAndPos> flowers = new ArrayList<>();
+
+        generateFlower(options, flowers, ModBlocks.FLOWER.getDefaultState(), density, random, world);
+
+        generate(flowers, world);
+    }
+
+    public static void generateFlower(InstanceOptions options,List<BlockAndPos> flowers, BlockState flowerState, float density, Random random, World world) {
+        boolean up = random.nextFloat() <= density % 1;
+        int count = Math.round((int)Math.floor(density)) + (up?1:0);
+
+        while (count > 0) {
+            BlockPos position = getRandomPosition(options, random);
+
+            BlockPos surfacePos = getHeightAtPos(options, random, position, world);
+
+            flowers.add(new BlockAndPos(flowerState, surfacePos, true));
+            count--;
+        }
     }
 
     // Densities are in average nb of tress per chunk
