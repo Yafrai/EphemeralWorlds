@@ -36,17 +36,16 @@ public class ModBlocks {
     public static final Block TERIUM_GRATE_HOPPER = new TeriumGratedHopper("terium_grate_hopper", Blocks.HOPPER);
 
     // Tiered
-    public static final Block COLOR_STONE = new ColorBlock("color_stone", Blocks.STONE, EnumColorBrightness.MINERAL);
-    public static final Block RUNE_STONE = new ModBlock("rune_stone", Blocks.STONE);
+    public static final Block RUNE_STONE = new TieredBlock("rune_stone", Blocks.STONE, 1);
 
-    public static final Block COLOR_LOG = new ColorPillarBlock("color_log", Blocks.OAK_LOG, EnumColorBrightness.ORGANIC);
-    public static final Block SPIRIT_LOG = new ModPillarBlock("spirit_log", Blocks.OAK_LOG);
-    public static final Block RIFT_LOG = new ModPillarBlock("rift_log", Blocks.OAK_LOG);
-
+    public static final Block COLOR_LOG = new TieredColorPillarBlock("color_log", Blocks.OAK_LOG, EnumColorBrightness.ORGANIC, 1);
+    public static final Block SPIRIT_LOG = new TieredPillarBlock("spirit_log", Blocks.OAK_LOG, 2);
+    public static final Block RIFT_LOG = new TieredPillarBlock("rift_log", Blocks.OAK_LOG, 4);
 
     // Color
-    public static final Block COLOR_DIRT = new ColorBlock("color_dirt", Blocks.DIRT, EnumColorBrightness.MINERAL);
+    public static final Block COLOR_STONE = new ColorBlock("color_stone", Blocks.STONE, EnumColorBrightness.MINERAL);
     public static final Block COLOR_SAND = new ColorBlock("color_sand", Blocks.SAND, EnumColorBrightness.MINERAL);
+    public static final Block COLOR_DIRT = new ColorBlock("color_dirt", Blocks.DIRT, EnumColorBrightness.MINERAL);
     public static final Block COLOR_GRASS = new DualBrightnessColorBlock("color_grass", Blocks.GRASS_BLOCK, EnumColorBrightness.MINERAL, EnumColorBrightness.ORGANIC);
 
     public static final Block COLOR_LEAVES = new ColorBlock("color_leaves", Blocks.OAK_LEAVES, EnumColorBrightness.ORGANIC);

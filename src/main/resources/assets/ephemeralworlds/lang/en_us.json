@@ -1,5 +1,11 @@
 {
   "block.ephemeralworlds.gem_ore": "Gem ore",
 
-  "effect.ephemeralworlds.illusion": "Illusion"
+  "effect.ephemeralworlds.illusion": "Illusion",
+
+  "tooltip.tier.1": "Tier 1",
+  "tooltip.tier.2": "Tier 2",
+  "tooltip.tier.3": "Tier 3",
+  "tooltip.tier.4": "Tier 4",
+  "tooltip.tier.5": "Tier 5"
 }
