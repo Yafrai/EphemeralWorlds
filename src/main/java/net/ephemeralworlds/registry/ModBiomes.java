@@ -14,4 +14,8 @@ public class ModBiomes {
     public static void registerBiomes() {
         forest = Registry.register(Registry.BIOME, new Identifier(EphemeralWorlds.MODID, "forest"), new IllusionForestBiome());
     }
+
+    public static boolean isBiome(Biome biome) {
+        return biome == forest;
+    }
 }

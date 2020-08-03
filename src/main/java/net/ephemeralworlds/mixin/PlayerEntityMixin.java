@@ -1,5 +1,7 @@
 package net.ephemeralworlds.mixin;
 
+import com.raphydaphy.crochet.data.PlayerData;
+import net.ephemeralworlds.EphemeralWorlds;
 import net.ephemeralworlds.registry.ModDimensions;
 import net.ephemeralworlds.registry.ModStatusEffects;
 import net.minecraft.container.PlayerContainer;
@@ -8,6 +10,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Final;
@@ -33,10 +36,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 		boolean nausea = this.hasStatusEffect(StatusEffects.NAUSEA);
 
 		if (illusion) {
-			// Check enter illusion
+			// Check enter spiritWorld
 			if (!nausea || getStatusEffect(StatusEffects.NAUSEA).getDuration() <= 3*20) {
-				if (!dimension.equals(ModDimensions.ephemerium)) {
-					changeDimension(ModDimensions.ephemerium);
+				if (!dimension.equals(ModDimensions.spiritWorld)) {
+					changeDimension(ModDimensions.spiritWorld);
 				}
 			}
 
@@ -45,7 +48,9 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 		}
 		else {
 			// Check exit dimension
-			if (dimension.equals(ModDimensions.ephemerium)) {
+			if (dimension.equals(ModDimensions.spiritWorld)) {
+//				CompoundTag tag = PlayerData.get((playerContainer.owner, EphemeralWorlds.MODID);
+				// todo send player back to previous dimension
 				changeDimension(DimensionType.OVERWORLD);
 			}
 		}

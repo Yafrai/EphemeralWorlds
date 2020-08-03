@@ -1,0 +1,20 @@
+{
+    "parent": "block/piston",
+    "textures": {
+        "bottom": "ephemeralworlds:blocks/piston_bottom",
+        "side": "ephemeralworlds:blocks/piston_side",
+        "platform": "ephemeralworlds:blocks/diachronium_block"
+    },
+    "display": {
+        "firstperson_righthand": {
+            "rotation": [ 0, 45, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.40, 0.40, 0.40 ]
+        },
+        "gui": {
+            "rotation": [30, 45, 0],
+            "translation": [0, -1.5, 0],
+            "scale": [0.7, 0.7, 0.7]
+        }
+    }
+}

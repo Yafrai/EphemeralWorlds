@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ephemeralworlds:diachronium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:diachronium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:diachronium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:diachronium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:diachronium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:diachronium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:diachronium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:diachronium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:diachronium_nugget"
+    }
+  ],
+  "result": {
+    "item": "ephemeralworlds:diachronium_ingot",
+    "count": 1
+  }
+}

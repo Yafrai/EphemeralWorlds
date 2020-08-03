@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/chromium_block",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/chromium_block"
+  }
+}

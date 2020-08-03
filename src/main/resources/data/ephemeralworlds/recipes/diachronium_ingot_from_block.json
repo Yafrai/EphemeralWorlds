@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ephemeralworlds:diachronium_block"
+    }
+  ],
+  "result": {
+    "item": "ephemeralworlds:diachronium_ingot",
+    "count": 9
+  }
+}

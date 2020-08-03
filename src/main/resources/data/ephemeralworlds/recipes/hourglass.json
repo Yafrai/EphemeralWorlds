@@ -2,13 +2,13 @@
   "type": "ephemeralworlds:tinkering_recipe",
   "ingredients": [
     {
-      "item": "ephemeralworlds:terium_ingot"
+      "item": "ephemeralworlds:chromium_ingot"
     },
     {
       "item": "glass"
     },
     {
-      "item": "ephemeralworlds:xerium_ingot"
+      "item": "ephemeralworlds:chromium_ingot"
     }
   ],
   "result": {

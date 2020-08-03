@@ -109,8 +109,8 @@ public class IslandGenerator {
 
         NoiseGenerator noiseGenerator = new NoiseGenerator(random);
 
-        float terium_density = 1/16F;
-        float xerium_density = 1/16F;
+        float chromium_density = 1/16F;
+        float diachronium_density = 1/16F;
         float gem1_density = 1/32F;
         float gem2_density = options.getIslandLevel()>=2?1/32F:0F;
         float gem3_density = options.getIslandLevel()>=3?1/32F:0F;
@@ -130,8 +130,8 @@ public class IslandGenerator {
 
                 for (int y=h; y>=negative_h; y--) {
 
-                    boolean terium = random.nextFloat() < terium_density && y < options.getCenterY();
-                    boolean xerium = random.nextFloat() < xerium_density && y < options.getCenterY();
+                    boolean chromium = random.nextFloat() < chromium_density && y < options.getCenterY();
+                    boolean diachronium = random.nextFloat() < diachronium_density && y < options.getCenterY();
                     boolean gem1 = random.nextFloat() < gem1_density && y < options.getCenterY();
                     boolean gem2 = random.nextFloat() < gem2_density && y < options.getCenterY() - 8;
                     boolean gem3 = random.nextFloat() < gem3_density && y < options.getCenterY() - 16;
@@ -146,7 +146,7 @@ public class IslandGenerator {
 
                     Block currentBlock = state.getBlock();
 
-                    if ((terium || xerium || gem1 || gem2 || gem3) && currentBlock.equals(ModBlocks.COLOR_STONE)) {
+                    if ((chromium || diachronium || gem1 || gem2 || gem3) && currentBlock.equals(ModBlocks.COLOR_STONE)) {
                         if (gem3)
                             state = ColorBlock.getStateWithColor(ModBlocks.GEM_ORE3.getDefaultState(), options.getColor());
                         else if (gem2)
@@ -154,13 +154,13 @@ public class IslandGenerator {
                         else if (gem1)
                             state = ColorBlock.getStateWithColor(ModBlocks.GEM_ORE1.getDefaultState(), options.getColor());
                         else {
-                            if (terium && xerium) {
-                                Block ore = random.nextBoolean() ? ModBlocks.TERIUM_ORE : ModBlocks.XERIUM_ORE;
+                            if (chromium && diachronium) {
+                                Block ore = random.nextBoolean() ? ModBlocks.CHROMIUM_ORE : ModBlocks.DIACHRONIUM_ORE;
                                 state = ColorBlock.getStateWithColor(ore.getDefaultState(), options.getColor());
-                            } else if (terium)
-                                state = ColorBlock.getStateWithColor(ModBlocks.TERIUM_ORE.getDefaultState(), options.getColor());
+                            } else if (chromium)
+                                state = ColorBlock.getStateWithColor(ModBlocks.CHROMIUM_ORE.getDefaultState(), options.getColor());
                             else
-                                state = ColorBlock.getStateWithColor(ModBlocks.XERIUM_ORE.getDefaultState(), options.getColor());
+                                state = ColorBlock.getStateWithColor(ModBlocks.DIACHRONIUM_ORE.getDefaultState(), options.getColor());
                         }
                     }
                     blocks.add(new BlockAndPos(state, new BlockPos(x + options.getCenterX(), y, z + options.getCenterZ()), false));

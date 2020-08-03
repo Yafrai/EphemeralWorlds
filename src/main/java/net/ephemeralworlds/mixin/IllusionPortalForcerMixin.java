@@ -31,7 +31,7 @@ public class IllusionPortalForcerMixin {
     private void usePortal(Entity entity, float float_1, CallbackInfoReturnable<Boolean> info) {
 
         // Enter illusion
-        if (world.getDimension().getType() == ModDimensions.ephemerium) {
+        if (world.getDimension().getType() == ModDimensions.spiritWorld) {
             CompoundTag tag = PlayerData.get((PlayerEntity) entity, EphemeralWorlds.MODID);
             tag.putLong("pos", entity.getBlockPos().asLong());
             tag.putInt("dimension", entity.getEntityWorld().getDimension().getType().getRawId());
@@ -58,7 +58,7 @@ public class IllusionPortalForcerMixin {
         }
 
         // Leave illusion
-        else if (entity.getEntityWorld().getDimension().getType() == ModDimensions.ephemerium) {
+        else if (entity.getEntityWorld().getDimension().getType() == ModDimensions.spiritWorld) {
             CompoundTag tag = PlayerData.get((PlayerEntity) entity, EphemeralWorlds.MODID);
 
             if (tag.containsKey("pos")) {

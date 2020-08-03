@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ephemeralworlds:chromium_block"
+    }
+  ],
+  "result": {
+    "item": "ephemeralworlds:chromium_ingot",
+    "count": 9
+  }
+}

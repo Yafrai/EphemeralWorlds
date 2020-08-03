@@ -64,7 +64,8 @@ public abstract class ModTreeFeature extends AbstractTreeFeature<DefaultFeatureC
     @Override
     public boolean generate(Set<BlockPos> set, ModifiableTestableWorld modifiableTestableWorld, Random random, BlockPos position, MutableIntBoundingBox mutableIntBoundingBox) {
         int variant = getVariant(random);
-        EnumColor color = DimensionHelper.getColorFromPosition((World)modifiableTestableWorld, position);
+//        EnumColor color = DimensionHelper.getColorFromPosition((World)modifiableTestableWorld, position);
+        EnumColor color = EnumColor.BLUE;
         List<BlockAndPos> blockList = getBlocks(position, variant, color);
 
         // Validate blocks and soil

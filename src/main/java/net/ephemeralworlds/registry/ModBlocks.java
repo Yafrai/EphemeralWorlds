@@ -28,12 +28,11 @@ public class ModBlocks {
 
     // Crafted
     public static final Block MAGIC_MUSHROOM_BLOCK = new MagicMushroomBlock("magic_mushroom_block");
-    public static final Block TERIUM_BLOCK = new ModBlock("terium_block", Blocks.IRON_BLOCK);
-    public static final Block XERIUM_BLOCK = new ModBlock("xerium_block", Blocks.IRON_BLOCK);
-//    public static final Block XERIUM_INK_BOWL = new InkJar("xerium_ink_bowl", Blocks.GLASS);
+    public static final Block CHROMIUM_BLOCK = new ModBlock("chromium_block", Blocks.IRON_BLOCK);
+    public static final Block DIACHRONIUM_BLOCK = new ModBlock("diachronium_block", Blocks.IRON_BLOCK);
     public static final Block INK_JAR = new InkJar("ink_jar", Blocks.GLASS);
-    public static final Block XERIUM_PISTON = new XeriumPiston("xerium_piston", Blocks.PISTON);
-    public static final Block TERIUM_GRATE_HOPPER = new TeriumGratedHopper("terium_grate_hopper", Blocks.HOPPER);
+    public static final Block DIACHRONIUM_PISTON = new DiachroniumPiston("diachronium_piston", Blocks.PISTON);
+    public static final Block CHROMIUM_GRATE_HOPPER = new ChromiumGratedHopper("chromium_grate_hopper", Blocks.HOPPER);
 
     // Tiered
     public static final Block RUNE_STONE = new TieredBlock("rune_stone", Blocks.STONE, 1);
@@ -60,8 +59,8 @@ public class ModBlocks {
     public static final Block GEM_ORE1 = new GemOre("gem_ore_1");
     public static final Block GEM_ORE2 = new GemOre("gem_ore_2");
     public static final Block GEM_ORE3 = new GemOre("gem_ore_3");
-    public static final Block TERIUM_ORE = new MetalOre("terium_ore");
-    public static final Block XERIUM_ORE = new MetalOre("xerium_ore");
+    public static final Block CHROMIUM_ORE = new MetalOre("chromium_ore");
+    public static final Block DIACHRONIUM_ORE = new MetalOre("diachronium_ore");
     public static final Block DROPLESS_PLATFORM = new LayeredBlock("dropless_platform", Blocks.GLASS);
     public static final Block DECAYED_SOIL = new DecayedSoil("decayed_soil");
 

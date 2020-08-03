@@ -30,13 +30,13 @@ public class DefaultModSurfaceBuilder extends SurfaceBuilder<TernarySurfaceConfi
     protected void generate(Random random, Chunk chunk, Biome biome, int x, int z, int ymax, double amplitude, BlockState blockState_default, BlockState blockState_default_top, BlockState top, BlockState under, BlockState underwater, int seaLevel) {
 
 //        EnumColor color = DimensionHelper.getColorFromPosition(world, new BlockPos(x, 0, z));
-        EnumColor color = EnumColor.BLUE;
-
-        if (top.getBlock() instanceof ColorBlock)
-            top = ColorBlock.getStateWithColor(top, color);
-
-        if (under.getBlock() instanceof ColorBlock)
-            under = ColorBlock.getStateWithColor(top, color);
+//        EnumColor color = EnumColor.BLUE;
+//
+//        if (top.getBlock() instanceof ColorBlock)
+//            top = ColorBlock.getStateWithColor(top, color);
+//
+//        if (under.getBlock() instanceof ColorBlock)
+//            under = ColorBlock.getStateWithColor(top, color);
 
         BlockPos.Mutable blockPos$Mutable_1 = new BlockPos.Mutable();
         BlockState effectiveTop = top;

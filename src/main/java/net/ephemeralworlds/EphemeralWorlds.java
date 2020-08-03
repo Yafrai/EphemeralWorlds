@@ -5,32 +5,22 @@ import nerdhub.cardinal.components.api.ComponentType;
 import nerdhub.cardinal.components.api.event.LevelComponentCallback;
 import nerdhub.cardinal.components.api.event.WorldComponentCallback;
 import nerdhub.foml.obj.OBJLoader;
-import net.ephemeralworlds.block.base.ModBlock;
 import net.ephemeralworlds.dimension.IllusionDimension;
 import net.ephemeralworlds.recipe.FusionCircleRecipe;
 import net.ephemeralworlds.recipe.FusionCircleRecipeSerializer;
 import net.ephemeralworlds.recipe.TinkeringTableRecipe;
 import net.ephemeralworlds.recipe.TinkeringTableRecipeSerializer;
 import net.ephemeralworlds.registry.*;
-import net.ephemeralworlds.utils.helpers.DimensionHelper;
 import net.ephemeralworlds.utils.instanceHandler.IWorldInstanceManager;
-import net.ephemeralworlds.utils.instanceHandler.InstanceOptions;
 import net.ephemeralworlds.utils.instanceHandler.LevelInstanceManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.world.WorldTickCallback;
-import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.ChunkManager;
-import net.minecraft.world.chunk.WorldChunk;
 
 public class EphemeralWorlds implements ModInitializer {
 
@@ -116,6 +106,8 @@ public class EphemeralWorlds implements ModInitializer {
 //			}
 
 			;
+
+
 		});
 	}
 }

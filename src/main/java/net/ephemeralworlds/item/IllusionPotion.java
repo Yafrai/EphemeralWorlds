@@ -10,6 +10,7 @@ import net.ephemeralworlds.registry.ModDimensions;
 import net.ephemeralworlds.registry.ModStatusEffects;
 import net.ephemeralworlds.utils.enums.EnumColor;
 import net.ephemeralworlds.utils.helpers.ColorHelper;
+import net.ephemeralworlds.utils.helpers.PlayerHelper;
 import net.ephemeralworlds.utils.instanceHandler.IWorldInstanceManager;
 import net.ephemeralworlds.utils.instanceHandler.InstanceOptions;
 import net.ephemeralworlds.utils.instanceHandler.LevelInstanceManager;
@@ -50,26 +51,28 @@ public class IllusionPotion extends ModPotionItem {
 
     public void onPotionDrink(World world, ItemStack stack, PlayerEntity player) {
 
-        World illusionWorld = EphemeralWorlds.ILLUSION_WORLD;
+//        World illusionWorld = EphemeralWorlds.ILLUSION_WORLD;
 //        ServerWorld world1 = MinecraftServer.getWorld(ModDimensions.illusion);
 
-        if (illusionWorld.getDimension() instanceof IllusionDimension) {
-//            if (stack.getItem() instanceof ColorItem) {
-//                color = ((ColorItem)stack.getItem()).getTagColor(stack);
-//            }
+//        if (illusionWorld.getDimension() instanceof IllusionDimension) {
+            if (stack.getItem() instanceof ColorItem) {
+                EnumColor color = ((ColorItem)stack.getItem()).getTagColor(stack);
 
-            CompoundTag potionTags = stack.getTag();
+                PlayerHelper.setPlayerColor(player, color);
+            }
+
+//            CompoundTag potionTags = stack.getTag();
 //
 //            IWorldInstanceManager wim = EphemeralWorlds.WORLD_DATA.get(illusionWorld);
 //            InstanceOptions options = new InstanceOptions(player, color);
 //            wim.createInstance(options);
 
-            IWorldInstanceManager wim = EphemeralWorlds.LEVEL_DATA.get(world.getLevelProperties());
-            InstanceOptions options = new InstanceOptions(player, potionTags, (LevelInstanceManager) wim);
-            wim.createInstance(options);
-            IslandGenerator.createIsland(options, player.getServer());
+//            IWorldInstanceManager wim = EphemeralWorlds.LEVEL_DATA.get(world.getLevelProperties());
+//            InstanceOptions options = new InstanceOptions(player, potionTags, (LevelInstanceManager) wim);
+//            wim.createInstance(options);
+//            IslandGenerator.createIsland(options, player.getServer());
 
-        }
+//        }
 
     }
 

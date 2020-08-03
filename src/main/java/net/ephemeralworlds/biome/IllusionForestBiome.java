@@ -19,11 +19,12 @@ public class IllusionForestBiome extends ModBiome {
 //        SurfaceConfig sc = getSurfaceConfig();
         super(new Settings()
                 .category(Category.FOREST)
-                .precipitation(Precipitation.NONE)
-                .configureSurfaceBuilder(ModSurfaceBuilder.VOID, ModSurfaceConfig.DEFAULT)
+                .precipitation(Precipitation.RAIN)
+                .configureSurfaceBuilder(ModSurfaceBuilder.DEFAULT, ModSurfaceConfig.DEFAULT)
+
                 .depth(1F)
                 .downfall(1F)
-                .scale(1F)
+                .scale(.45F)
                 .waterColor(256)
                 .waterFogColor(128)
                 .temperature(1F)

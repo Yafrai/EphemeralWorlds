@@ -37,7 +37,7 @@ public abstract class ModBiome extends Biome {
                     new ModOreFeature(OreFeatureConfig::deserialize),
                     new OreFeatureConfig(
                             OreFeatureConfig.Target.NATURAL_STONE,
-                            ModBlocks.TERIUM_ORE.getDefaultState(),
+                            ModBlocks.CHROMIUM_ORE.getDefaultState(),
                             4 //Ore vein size
                     ),
                     Decorator.COUNT_RANGE,
@@ -54,7 +54,7 @@ public abstract class ModBiome extends Biome {
                     new ModOreFeature(OreFeatureConfig::deserialize),
                     new OreFeatureConfig(
                             OreFeatureConfig.Target.NATURAL_STONE,
-                            ModBlocks.XERIUM_ORE.getDefaultState(),
+                            ModBlocks.DIACHRONIUM_ORE.getDefaultState(),
                             8 //Ore vein size
                     ),
                     Decorator.COUNT_RANGE,

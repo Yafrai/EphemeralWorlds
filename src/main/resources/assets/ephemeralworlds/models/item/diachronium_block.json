@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/diachronium_block",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/diachronium_block"
+  }
+}

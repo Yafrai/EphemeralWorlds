@@ -1,8 +1,12 @@
 package net.ephemeralworlds.utils.helpers;
 
+import com.raphydaphy.crochet.data.PlayerData;
+import net.ephemeralworlds.EphemeralWorlds;
+import net.ephemeralworlds.utils.enums.EnumColor;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.World;
 
 public class PlayerHelper {
@@ -26,5 +30,15 @@ public class PlayerHelper {
             drop.setVelocity(0, 0, 0);
             player.world.spawnEntity(drop);
         }
+    }
+
+    public static EnumColor getPlayerColor(PlayerEntity player) {
+        CompoundTag tag = PlayerData.get(player, EphemeralWorlds.MODID);
+        return EnumColor.byIndex(tag.getInt("color"));
+    }
+
+    public static void setPlayerColor(PlayerEntity player, EnumColor color) {
+        CompoundTag tag = PlayerData.get(player, EphemeralWorlds.MODID);
+        tag.putInt("color", color.getIndex());
     }
 }

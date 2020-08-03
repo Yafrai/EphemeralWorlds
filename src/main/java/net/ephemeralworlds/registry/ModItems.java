@@ -36,13 +36,13 @@ public class ModItems {
     public static final Item BONE2 = new TieredItem("bone2", 2);
     public static final Item BONE3 = new TieredItem("bone3", 3);
 
-    public static final Item TERIUM_INGOT = new TieredItem("terium_ingot", 1);
-    public static final Item XERIUM_INGOT = new TieredItem("xerium_ingot", 1);
+    public static final Item CHROMIUM_INGOT = new TieredItem("chromium_ingot", 1);
+    public static final Item DIACHRONIUM_INGOT = new TieredItem("diachronium_ingot", 1);
 
     // Misc
     public static final Item CREATIVE_PORTAL = new CreativePortal("creative_portal");
-    public static final Item TERIUM_NUGGET = new ModItem("terium_nugget");
-    public static final Item XERIUM_NUGGET = new ModItem("xerium_nugget");
+    public static final Item CHROMIUM_NUGGET = new ModItem("chromium_nugget");
+    public static final Item DIACHRONIUM_NUGGET = new ModItem("diachronium_nugget");
 
     public static final Item HOURGLASS = new GlyphItem("hourglass", false);
     public static final Item PRISM = new GlyphItem("prism", false);
