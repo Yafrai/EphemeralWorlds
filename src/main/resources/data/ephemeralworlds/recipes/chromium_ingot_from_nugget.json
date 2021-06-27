@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ephemeralworlds:chromium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:chromium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:chromium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:chromium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:chromium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:chromium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:chromium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:chromium_nugget"
+    },
+    {
+      "item": "ephemeralworlds:chromium_nugget"
+    }
+  ],
+  "result": {
+    "item": "ephemeralworlds:chromium_ingot",
+    "count": 1
+  }
+}

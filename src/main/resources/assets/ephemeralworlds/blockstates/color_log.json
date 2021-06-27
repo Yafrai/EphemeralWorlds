@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y":  { "model": "ephemeralworlds:block/color_log" },
+    "axis=z":   { "model": "ephemeralworlds:block/color_log", "x": 90 },
+    "axis=x":   { "model": "ephemeralworlds:block/color_log", "x": 90, "y": 90 }
+  }
+}

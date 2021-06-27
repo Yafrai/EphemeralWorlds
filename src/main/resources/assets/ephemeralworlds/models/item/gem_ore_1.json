@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/gem_ore_1",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/color/gem_ore_1"
+  }
+}

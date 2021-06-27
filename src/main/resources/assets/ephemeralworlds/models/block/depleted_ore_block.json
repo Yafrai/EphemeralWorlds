@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/shapes/color",
+  "textures": {
+    "all": "ephemeralworlds:blocks/color/depleted_ore_block"
+  }
+}

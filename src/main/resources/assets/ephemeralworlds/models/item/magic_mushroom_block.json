@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/magic_mushroom",
+  "textures": {
+    "layer0": "ephemeralworlds:items/magic_mushroom"
+  }
+}

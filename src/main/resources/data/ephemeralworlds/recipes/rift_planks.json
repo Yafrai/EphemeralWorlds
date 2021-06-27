@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ephemeralworlds:rift_log"
+    }
+  ],
+  "result": {
+    "item": "ephemeralworlds:rift_planks",
+    "count": 4
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "#/",
+    " /"
+  ],
+  "key": {
+    "#": {
+      "item": "ephemeralworlds:soul_glass"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "ephemeralworlds:soul_axe",
+    "count": 1
+  }
+}

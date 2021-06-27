@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "ephemeralworlds:items/soul_axe"
+  }
+}

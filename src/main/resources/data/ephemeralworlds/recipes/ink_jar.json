@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "g g",
+    "g g",
+    "ggg"
+  ],
+  "key": {
+    "g": {
+      "item": "ephemeralworlds:soul_glass"
+    }
+  },
+  "result": {
+    "item": "ephemeralworlds:ink_jar",
+    "count": 1
+  }
+}

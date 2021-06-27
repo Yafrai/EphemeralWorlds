@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/rift_planks",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/rift_planks"
+  }
+}

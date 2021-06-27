@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "depleted=false": {"model": "ephemeralworlds:block/diachronium_ore_block"},
+    "depleted=true": {"model": "ephemeralworlds:block/depleted_ore_block"}
+  }
+}

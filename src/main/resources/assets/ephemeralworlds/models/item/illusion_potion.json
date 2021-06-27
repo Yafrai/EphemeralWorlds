@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ephemeralworlds:items/illusion_potion",
+    "layer1": "ephemeralworlds:items/bottle"
+  }
+}

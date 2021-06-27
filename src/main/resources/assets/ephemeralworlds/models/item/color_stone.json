@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/color_stone",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/color/color_stone"
+  }
+}

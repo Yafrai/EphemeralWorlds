@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/soul_glass",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/soul_glass"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/spirit_planks",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/spirit_planks"
+  }
+}

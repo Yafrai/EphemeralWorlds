@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "g g",
+    " g "
+  ],
+  "key": {
+    "g": {
+      "item": "ephemeralworlds:soul_glass"
+    }
+  },
+  "result": {
+    "item": "ephemeralworlds:bottle",
+    "count": 3
+  }
+}

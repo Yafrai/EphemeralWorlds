@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ephemeralworlds:spirit_log"
+    }
+  ],
+  "result": {
+    "item": "ephemeralworlds:spirit_planks",
+    "count": 4
+  }
+}

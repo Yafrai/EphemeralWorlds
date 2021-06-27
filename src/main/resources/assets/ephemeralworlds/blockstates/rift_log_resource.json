@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "depleted=false":  { "model": "ephemeralworlds:block/rift_log" },
+    "depleted=true":   { "model": "ephemeralworlds:block/rift_log" }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/tinkering_table",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/color/tinkering_table"
+  }
+}

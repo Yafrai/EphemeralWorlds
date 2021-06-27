@@ -1,0 +1,19 @@
+{
+  "type": "ephemeralworlds:tinkering_recipe",
+  "ingredients": [
+    {
+      "item": "ephemeralworlds:chromium_ingot"
+    },
+    {
+      "item": "glass"
+    },
+    {
+      "item": "ephemeralworlds:chromium_ingot"
+    }
+  ],
+  "result": {
+    "item": "ephemeralworlds:hourglass"
+  },
+  "color": "any",
+  "recolor": true
+}

@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "depleted=false": {"model": "ephemeralworlds:block/gem_ore_1"},
+    "depleted=true": {"model": "ephemeralworlds:block/depleted_ore_block"}
+  }
+}

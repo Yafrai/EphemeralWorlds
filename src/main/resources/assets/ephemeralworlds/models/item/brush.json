@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ephemeralworlds:items/brush",
+    "layer1": "ephemeralworlds:items/brush_rod"
+  }
+}

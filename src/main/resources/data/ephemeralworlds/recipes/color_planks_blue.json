@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ephemeralworlds:color_log"
+    }
+  ],
+  "result": {
+    "item": "ephemeralworlds:color_planks",
+    "count": 4,
+    "nbt": {
+      "color": "blue"
+    }
+  }
+}

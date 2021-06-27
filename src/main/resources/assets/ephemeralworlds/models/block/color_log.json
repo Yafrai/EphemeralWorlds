@@ -1,0 +1,7 @@
+{
+  "parent": "ephemeralworlds:block/shapes/color_column",
+  "textures": {
+    "side": "ephemeralworlds:blocks/color/color_log",
+    "end": "ephemeralworlds:blocks/color/color_log_end"
+  }
+}

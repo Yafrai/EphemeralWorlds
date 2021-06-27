@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "ephemeralworlds",
+  "version": "${version}",
+
+  "name": "Ephemeral Worlds",
+  "description": "A mod about exploring vanishing lands",
+  "authors": [
+    "Yafrai"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/ephemeralworlds/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.ephemeralworlds.EphemeralWorlds"
+    ],
+    "client": [
+      "net.ephemeralworlds.EphemeralWorldsClient"
+    ]
+  },
+  "mixins": [
+    "ephemeralworlds.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}

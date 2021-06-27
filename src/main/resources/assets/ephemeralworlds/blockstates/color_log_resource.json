@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "depleted=false":  { "model": "ephemeralworlds:block/color_log" },
+    "depleted=true":   { "model": "ephemeralworlds:block/color_log" }
+  }
+}

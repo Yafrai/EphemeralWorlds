@@ -1,0 +1,6 @@
+{
+  "parent": "ephemeralworlds:block/diachronium_ore_block",
+  "textures": {
+    "layer0": "ephemeralworlds:blocks/color/diachronium_ore_block"
+  }
+}

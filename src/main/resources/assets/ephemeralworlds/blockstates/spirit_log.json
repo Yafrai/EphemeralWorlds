@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y":  { "model": "ephemeralworlds:block/spirit_log" },
+    "axis=z":   { "model": "ephemeralworlds:block/spirit_log", "x": 90 },
+    "axis=x":   { "model": "ephemeralworlds:block/spirit_log", "x": 90, "y": 90 }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ephemeralworlds:chromium_ingot"
+    },
+    {
+      "item": "ephemeralworlds:chromium_ingot"
+    },
+    {
+      "item": "ephemeralworlds:chromium_ingot"
+    },
+    {
+      "item": "ephemeralworlds:chromium_ingot"
+    },
+    {
+      "item": "ephemeralworlds:chromium_ingot"
+    },
+    {
+      "item": "ephemeralworlds:chromium_ingot"
+    },
+    {
+      "item": "ephemeralworlds:chromium_ingot"
+    },
+    {
+      "item": "ephemeralworlds:chromium_ingot"
+    },
+    {
+      "item": "ephemeralworlds:chromium_ingot"
+    }
+  ],
+  "result": {
+    "item": "ephemeralworlds:chromium_block",
+    "count": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "package": "net.ephemeralworlds.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "BlockItemMixin",
+    "BlockMixin",
+    "HopperMixin",
+    "IllusionPortalForcerMixin",
+    "ItemUseMixin",
+    "MushroomMixin",
+    "PlayerEntityMixin",
+    "HopperBlockEntityAccessor"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
